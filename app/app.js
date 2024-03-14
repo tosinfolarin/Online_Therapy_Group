@@ -54,7 +54,76 @@ app.get("/", function(req, res) {
 // });
 
 
+app.get("/db_test", function(req, res) {
+    // Assumes a table called test_table exists in your database
+   var sql = 'select * from Therapist';
+    db.query(sql).then(results => {
+        console.log(results);
+        res.send(results)
+    });
+});
 
+
+
+
+// app.get("/online-therapy", function(req, res) {
+//     var sql = 'SELECT DISTINCT Therapist_Reg_No, TherapistName FROM Therapist';
+
+//     // Asynchronously execute the SQL query
+//     db.query(sql).then(results => {
+//         var output = '<h1>List of Therapists</h1>';
+//         output += '<ul>';
+//         for (var row of results) {
+//             output += '<li>' + row.Therapist_Reg_No + ': ' + row.TherapistName + '</li>';
+//         }
+//         output += '</ul>';
+//         res.send(output);
+//     }).catch(error => {
+//         // Log the error to the console
+//         console.error('Error fetching therapists:', error);
+//         // Send an appropriate response with a status code of 500
+//         res.status(500).send('Error fetching therapists');
+//     });
+// });
+
+
+
+
+app.get("/online-therapy", function(req, res) {
+    var sql = 'SELECT DISTINCT T.Therapist_Reg_No, T.TherapistName, P.PatientID, P.PtName FROM Therapist T JOIN Patients P ON T.Therapist_Reg_No = P.Therapist_Reg_No';
+
+    // Asynchronously execute the SQL query
+    db.query(sql).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Patient ID</th><th>Patient Name</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.PatientID + '</td>';
+            output += '<td>' + row.PtName + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    }).catch(error => {
+        // Handle any errors that occur during the database query
+        console.error('Error fetching therapists linked to patients:', error);
+        res.status(500).send('Error fetching therapists linked to patients');
+    });
+});
+
+
+
+
+// app.get("/therapists", function(req, res) {
+//     // Assumes a table called test_table exists in your database
+//    var sql = 'select * from Therapist';
+//     db.query(sql).then(results => {
+//         console.log(results);
+//         res.send(results)
+//     });
+// });
 
 // Task 2 display a formatted list of students
 app.get("/all-students-formatted", function(req, res) {
@@ -74,6 +143,15 @@ app.get("/all-students-formatted", function(req, res) {
         res.send(output);
     });
 });
+
+
+
+
+
+
+
+
+
 
 app.get("/single-student/:id", function(req, res) {
     var stId = req.params.id;
