@@ -116,17 +116,17 @@ app.get("/online-therapy", function(req, res) {
 
 
 
-// app.get("/therapists", function(req, res) {
-//     // Assumes a table called test_table exists in your database
-//    var sql = 'select * from Therapist';
-//     db.query(sql).then(results => {
-//         console.log(results);
-//         res.send(results)
-//     });
-// });
+ app.get("/therapists", function(req, res) {
+     // Assumes a table called test_table exists in your database
+    var sql = 'select * from Therapist';
+     db.query(sql).then(results => {
+         console.log(results);
+         res.send(results)
+     });
+ });
 
 // Task 2 display a formatted list of students
-app.get("/all-students-formatted", function(req, res) {
+/* app.get("/all-students-formatted", function(req, res) {
     var sql = 'select * from Students';
     // As we are not inside an async function we cannot use await
     // So we use .then syntax to ensure that we wait until the 
@@ -143,7 +143,7 @@ app.get("/all-students-formatted", function(req, res) {
         res.send(output);
     });
 });
-
+ */
 
 
 
