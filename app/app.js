@@ -32,14 +32,22 @@ const db = require('./services/db');
 
 
 // Create a route for root - /
-app.get("/", function(req, res) {
-    // Set up an array of data
-    var test_data = ['one', 'two', 'three', 'four'];
-    // Send the array through to the template as a variable called data
-    res.render("index", 
-                {'title':'My index page', 'heading':'My heading', 'data':test_data});
-});
+// app.get("/", function(req, res) {
+//     // Set up an array of data
+//     var test_data = ['one', 'two', 'three', 'four'];
+//     // Send the array through to the template as a variable called data
+//     res.render("index", 
+//                 {'title':'My index page', 'heading':'My heading', 'data':test_data});
+// });
 
+
+app.get("/", function(req, res) {
+    //     // Set up an array of data
+    //     var test_data = ['one', 'two', 'three', 'four'];
+    //     // Send the array through to the template as a variable called data
+        res.render("signin");
+    });
+    
 
 // app.get("/all-students", function(req, res) {
 //     sql = 'select * from Students';
@@ -85,6 +93,168 @@ app.get("/db_test", function(req, res) {
 //         res.status(500).send('Error fetching therapists');
 //     });
 // });
+
+//Retrieving therapist information 
+app.get("/online-therapy", function(req, res) {
+    var sql = 'SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist';
+
+    db.query(sql).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    })
+});
+
+
+//Retrieving individual information from Johnny Depp
+app.get("/find-out-more-johnny-depp", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Johnny Depp']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
+
+//Retrieving individual information from Johnny Depp
+app.get("/find-out-more-johnny-depp", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Johnny Depp']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
+
+//Retrieving individual information from Jane Carter
+app.get("/find-out-more-jane-carter", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Jane Carter']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
+
+//Retrieving individual information from Thomas Appleby
+app.get("/find-out-more-thomas-appleby", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Thomas Appleby']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
+
+
+//Retrieving individual information from Phoebe Price
+app.get("/find-out-more-phoebe-prize", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Phoebe Prize']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
+
+//Retrieving individual information from Susan Porter
+app.get("/find-out-more-susan-porter", function(req, res) {
+    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    
+
+    db.query(sql, ['Susan Porter']).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    });
+});
 
 
 

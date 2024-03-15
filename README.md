@@ -17,11 +17,11 @@ Local files are mounted into the container using the 'volumes' directive in the 
 
 #### Visit phphmyadmin at:
 
-http://localhost:8081/
+http://localhost:8085/
 
 #### Visit your express app at:
 
-http://localhost:3000
+http://localhost:2000
 
 For reference, see the video at: https://roehampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6f290a6b-ba94-4729-9632-adcf00ac336e
 
@@ -57,3 +57,5 @@ Once in the database container, you can get a MySQL CLI in the usual way
 mysql -uroot -p<password> 
 ```
 # SoftwareDevelopmentLabs
+
+
