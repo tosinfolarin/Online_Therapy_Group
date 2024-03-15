@@ -57,3 +57,5 @@ Once in the database container, you can get a MySQL CLI in the usual way
 mysql -uroot -p<password> 
 ```
 # SoftwareDevelopmentLabs
+
+gj
