@@ -20,15 +20,15 @@ const db = require('./services/db');
 //     res.send("Hello Theo!");
 // });
 
-// Create a route for root
-// app.get("/", function(req, res) {
-//     res.render("index");
-// });
+ //Create a route for root
+ app.get("/home", function(req, res) {
+     res.render("index");
+ });
 
 // Create a route for root - /
-// app.get("/", function(req, res) {
-//     res.render("index", {'title':'My index page', 'heading':'My heading'});
-// });
+ app.get("/", function(req, res) {
+     res.render("index", {'title':'My index page', 'heading':'My heading'});
+ });
 
 
 // Create a route for root - /
