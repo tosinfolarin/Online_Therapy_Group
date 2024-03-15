@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Online_Therapy`
+-- Database: `online_therapy_group`
 --
 
 -- --------------------------------------------------------
@@ -136,19 +136,24 @@ INSERT INTO `Payment` (`PaymentID`, `PaymentMethod`, `PaymentStatus`, `PaymentDa
 CREATE TABLE `Therapist` (
   `Therapist_Reg_No` varchar(15) NOT NULL,
   `TherapistPhoneNo` varchar(20) NOT NULL,
-  `TherapistName` varchar(20) NOT NULL
+  `TherapistName` varchar(20) NOT NULL,
+  `Experience` varchar(200) NOT NULL,
+  `Speciality` varchar(200) NOT NULL,
+  `Approach` varchar(200) NOT NULL,
+  `Availability` varchar(500) NOT NULL,
+  `Notes` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Therapist`
 --
 
-INSERT INTO `Therapist` (`Therapist_Reg_No`, `TherapistPhoneNo`, `TherapistName`) VALUES
-('T111AA', '071111111111', 'Johnny Depp'),
-('T222AA', '07222222222', 'Jane Carter'),
-('T333AA', '07333333333', 'Thomas Appleby'),
-('T444AA', '07444444444', 'Phoebe Prize'),
-('T555AA', '07555555555', 'Susan Porter');
+INSERT INTO `Therapist` (`Therapist_Reg_No`, `TherapistPhoneNo`, `TherapistName`, `Experience`, `Speciality`, `Approach`, `Availability`, `Notes`) VALUES
+('T111AA', '071111111111', 'Johnny Depp', '20 Years', 'Marriage & Depression', 'Phone Calls and Text messaging', 'I am available Monday – Friday 9am-5pm', NULL),
+('T222AA', '07222222222', 'Jane Carter', '15 Years', 'Depression & Anxiety', 'Phone Calls and Text Messaging', 'I am available Monday – Sunday 8am-8pm', NULL),
+('T333AA', '07333333333', 'Thomas Appleby', '5 Years', 'Suicide', 'Phone Calls and Video Calls', 'I am available on Saturday and Sunday from 9am-5pm', NULL),
+('T444AA', '07444444444', 'Phoebe Prize', '3 Years', 'Marriage, Depression & Suicide', 'Phone Calls and Video Calls', 'I am available Monday – Friday 9-5pm', NULL),
+('T555AA', '07555555555', 'Susan Porter', '10 Years', 'Marriage, Anxiety, Depression and Suicide', 'Phone Calls, Video Calls and Text Messaging', 'I am available Monday – Saturday 9-5pm and Sunday 8am – 2pm', NULL);
 
 --
 -- Indexes for dumped tables
