@@ -217,20 +217,8 @@ app.get("/find-out-more-johnny-depp", function(req, res) {
     
 
     db.query(sql, ['Johnny Depp']).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.Experience + '</td>';
-            output += '<td>' + row.Speciality + '</td>';
-            output += '<td>' + row.Approach + '</td>';
-            output += '<td>' + row.Availability + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
+       
+        res.render('doctors', {data:results});
     });
 });
 
