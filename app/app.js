@@ -62,8 +62,10 @@ app.get("/db_test", function(req, res) {
         res.send(results)
     });
 });
-
-
+// This is my profile page for the online therapy
+app.get("/profilepage", function(req, res) {
+    res.render('profile')
+});
 
 
 // app.get("/online-therapy", function(req, res) {
