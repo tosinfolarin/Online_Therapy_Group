@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        title Therapist Information
+    body
+        table(border="1px")
+            tr
+               
+                th Therapist Name
+               
+            each row in results
+                tr
+                 
+                    td= row.TherapistName
+                    td Please click on my name to see my full details ---
+                         a(href='/Thomas/' + row.Therapist_Reg_No) #{row.TherapistName}
+
+       

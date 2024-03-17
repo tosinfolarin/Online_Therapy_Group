@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title Therapist Information
+    body
+        table(border="1px")
+            tr
+                th Therapist Registration Number
+                th Therapist Name
+                th Experience
+                th Speciality
+                th Preferred Approach
+                th Availability
+            each row in results
+                tr
+                    td= row.Therapist_Reg_No
+                    td= row.TherapistName
+                    td= row.Experience
+                    td= row.Speciality
+                    td= row.Approach
+                    td= row.Availability
+                        a(href='/Thomas/' + row.Therapist_Reg_No)
+       
