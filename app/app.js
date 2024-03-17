@@ -8,7 +8,7 @@ var app = express();
 app.set('view engine', 'pug');
 app.set('views', './app/views');
 
-/* app.use(express.static('public')); */
+
 
 // Add static files location
 app.use(express.static("static"));
