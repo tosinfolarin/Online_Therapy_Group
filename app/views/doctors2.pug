@@ -2,17 +2,36 @@ doctype html
 html
     head
         title Therapist Information
+        style.
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #4ba976;
+            }
+            tr:hover {
+                background-color: #f5f5f5;
+            }
+            a {
+                text-decoration: none;
+                color: blue;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
     body
         table(border="1px")
             tr
-               
                 th Therapist Name
-               
             each row in results
                 tr
-                 
                     td= row.TherapistName
                     td Please click on my name to see my full details ---
-                         a(href='/jane-carter/' + row.Therapist_Reg_No) #{row.TherapistName}
-
-       
+                        a(href='/jane-carter/' + row.Therapist_Reg_No) #{row.TherapistName}

@@ -2,17 +2,31 @@ doctype html
 html
     head
         title Therapist Information
+        style.
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                border: 2px solid #ddd;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:hover {
+                background-color: #f5f5f5;
+            }
     body
-        table(border="1px")
+        table
+            caption HEY, THIS IS MY DETAILS. LET ME KNOW IF YOU NEED ANYTHING.
             tr
-               
                 th Therapist Name
-               
             each row in results
                 tr
-                 
                     td= row.TherapistName
-                    td Please click on my name to see my full details ---
-                         a(href='/doctordetails/' + row.Therapist_Reg_No) #{row.TherapistName}
-
-       
+                    td
+                        a(href='/doctordetails/' + row.Therapist_Reg_No) #{row.TherapistName} - Click for Details

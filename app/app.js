@@ -8,6 +8,7 @@ var app = express();
 app.set('view engine', 'pug');
 app.set('views', './app/views');
 
+/* app.use(express.static('public')); */
 
 // Add static files location
 app.use(express.static("static"));
@@ -278,49 +279,40 @@ app.get("/Thomas/:Therapist_Reg_No", function(req,res){
 
 //Retrieving individual information from Phoebe Price
 app.get("/find-out-more-phoebe-prize", function(req, res) {
-    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Thomas App'";
     
 
     db.query(sql, ['Phoebe Prize']).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.Experience + '</td>';
-            output += '<td>' + row.Speciality + '</td>';
-            output += '<td>' + row.Approach + '</td>';
-            output += '<td>' + row.Availability + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
+       
+            res.render('doctors4', {results:results});
     });
 });
+
+app.get("/phoebe/:Therapist_Reg_No", function(req,res){
+    var docsId = req.params.Therapist_Reg_No;
+    var docsql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = 'Phoebe Prize'";
+    db.query(docsql, [docsId]).then(results =>{
+        res.render('pp', {results:results});
+    })
+})
 
 //Retrieving individual information from Susan Porter
 app.get("/find-out-more-susan-porter", function(req, res) {
-    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+    var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Susan Porter'";
     
 
     db.query(sql, ['Susan Porter']).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.Experience + '</td>';
-            output += '<td>' + row.Speciality + '</td>';
-            output += '<td>' + row.Approach + '</td>';
-            output += '<td>' + row.Availability + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
+        res.render('doctors5', {results:results});
     });
 });
+
+app.get("/susan/:Therapist_Reg_No", function(req,res){
+    var docsId = req.params.Therapist_Reg_No;
+    var docsql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = 'Susan Porter'";
+    db.query(docsql, [docsId]).then(results =>{
+        res.render('sp', {results:results});
+    })
+})
 
 
 
