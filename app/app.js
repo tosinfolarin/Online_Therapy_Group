@@ -42,27 +42,9 @@ app.get("/", function(req, res) {
 });
 
 
-// app.get("/all-students", function(req, res) {
-//     sql = 'select * from Students';
-//     db.query(sql).then(results => {
-//         let data = []
-//         for(let i=0; i<results.length; i++){
-//             res.write(results[i].name)
-//         }
-//         res.end()
-//         console.log(data);
-//     });
-// });
 
 
-app.get("/db_test", function(req, res) {
-    // Assumes a table called test_table exists in your database
-   var sql = 'select * from Therapist';
-    db.query(sql).then(results => {
-        console.log(results);
-        res.send(results)
-    });
-});
+
 
 
 
@@ -91,27 +73,31 @@ app.get("/db_test", function(req, res) {
 
 
 app.get("/online-therapy", function(req, res) {
-    var sql = 'SELECT DISTINCT T.Therapist_Reg_No, T.TherapistName, P.PatientID, P.PtName FROM Therapist T JOIN Patients P ON T.Therapist_Reg_No = P.Therapist_Reg_No';
+    var sql = 'SELECT TherapistName, Therapist_Reg_No FROM Therapist';
+    
 
-    // Asynchronously execute the SQL query
+    // we asynchronously executed the SQL query
     db.query(sql).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Patient ID</th><th>Patient Name</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.PatientID + '</td>';
-            output += '<td>' + row.PtName + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
+        res.render('docsmainpage', {results:results});
     }).catch(error => {
         // Handle any errors that occur during the database query
         console.error('Error fetching therapists linked to patients:', error);
         res.status(500).send('Error fetching therapists linked to patients');
     });
+});
+
+app.get("/singledoc/:Therapist_Reg_No", function(req, res){
+    var alldoc = req.params.Therapist_Reg_No;
+    var alldocsql ="SELECT * from therapist  WHERE TherapistName = ?";
+
+
+    
+    
+    db.query(alldocsql, [alldoc]).then(results =>{
+       res.render('alldocs', {results:results})
+
+
+    })
 });
 
 
@@ -126,71 +112,8 @@ app.get("/online-therapy", function(req, res) {
      });
  });
 
-// Task 2 display a formatted list of students
-/* app.get("/all-students-formatted", function(req, res) {
-    var sql = 'select * from Students';
-    // As we are not inside an async function we cannot use await
-    // So we use .then syntax to ensure that we wait until the 
-    // promise returned by the async function is resolved before we proceed
-    var output = '<table border="1px">';
-    db.query(sql).then(results => {
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.id + '</td>';
-            output += '<td>' + '<a href="./single-student/' + row.id + '">' + row.name + '</a>' + '</td>';
-            output += '</tr>'
-        }
-        output+= '</table>';
-        res.send(output);
-    });
-});
- */
-
-
-
-
-
-
-
-
-
-app.get("/single-student/:id", function(req, res) {
-    var stId = req.params.id;
-    var stSql = "SELECT s.name as student, ps.name as programme, \
-    ps.id as pcode from Students s \
-    JOIN Student_Programme sp on sp.id = s.id \
-    JOIN Programmes ps on ps.id = sp.programme \
-    WHERE s.Id = ?"
-    var modSql = "SELECT * From Programme_Modules pm \
-    JOIN Modules m on m.code = pm.module \
-    WHERE programme = ?";
-    db.query(stSql, [stId]).then(results => {
-        console.log(results);
-        var pCode = results[0].pcode;
-        output = '';
-        output += '<div><b>Student: </b>' + results[0].student; '</div>';
-        output += '<div><b>Programme: </b>' + results[0].Programme; '</div>';
-        
-        // Now call database for the modules
-        db.query(modSql, [pCode]).then(results => {
-            output += '<table border="1px">';
-            console.log(results);
-            for (var row of results) {
-                output += '<tr>';
-                output += '<td>' + row.module + '</td>';
-                output += '<td>' + row.name + '</td>';
-                output += '</tr>'
-            }
-            output+= '</table>';
-            res.send(output);
-        });
-
-    });
-})
-
-
 //Retrieving therapist information 
-app.get("/online-therapy", function(req, res) {
+/* app.get("/online-therapy", function(req, res) {
     var sql = 'SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist';
 
     db.query(sql).then(results => {
@@ -209,7 +132,7 @@ app.get("/online-therapy", function(req, res) {
         output += '</table>';
         res.send(output);
     })
-});
+}); */
 
 
 //Retrieving individual information from Johnny Depp
@@ -316,40 +239,11 @@ app.get("/susan/:Therapist_Reg_No", function(req,res){
 
 
 
-// Task 2 display a formatted list of students
-app.get("/all-students-formatted", function(req, res) {
-    var sql = 'select * from Students';
-    db.query(sql).then(results => {
-    	    // Send the results rows to the all-students template
-    	    // The rows will be in a variable called data
-        res.render('all-students', {data: results});
-    });
-});
-
-
-
-
-
-
-
-// Create a route for testing the db
-app.get("/db_test", function(req, res) {
-    // Assumes a table called test_table exists in your database
-    sql = 'select * from test_table';
-    db.query(sql).then(results => {
-        let data = []
-        for(let i=0; i<results.length; i++){
-            res.write(results[i].name)
-        }
-        res.end()
-        console.log(data);
-    });
-});
 
 // Create a route for /goodbye
 // Responds to a 'GET' request
 app.get("/", function(req, res) {
-    res.send("Hello world!");
+    res.send("Hello online therapy world!");
 });
 
 // Create a dynamic route for /hello/<name>, where name is any value provided by user
