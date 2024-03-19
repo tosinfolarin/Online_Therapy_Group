@@ -1,7 +1,7 @@
 
 
 
-//This is our OOP. using class to handle therapist routes.
+//This is our OOP. using class to handle therapist routes currently we have two routes..
 class TherapistController {
     constructor(docs) {
         this.docs = docs;
