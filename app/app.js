@@ -1,6 +1,14 @@
 // Import express.js
 const express = require("express");
 
+
+
+
+
+
+
+
+
 // Create express app
 var app = express();
 
@@ -15,6 +23,12 @@ app.use(express.static("static"));
 
 // Get the functions in the db.js file to use
 const db = require('./services/db');
+
+const TherapistController = require('./models/Therapistcontrol');
+const therapistController = new TherapistController(db);
+
+app.get('/online-therapy', (req, res) => therapistController.getAllTherapists(req, res));
+app.get('/singledoc/:Therapist_Reg_No', (req, res) => therapistController.getSingleTherapist(req, res));
 
 // Create a route for root - /
 // app.get("/", function(req, res) {
@@ -71,8 +85,8 @@ app.get("/", function(req, res) {
 
 
 
-
-app.get("/online-therapy", function(req, res) {
+//defining our routes without using the OOP. class
+/* app.get("/online-therapy", function(req, res) {
     var sql = 'SELECT TherapistName, Therapist_Reg_No FROM Therapist';
     
 
@@ -98,7 +112,7 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 
     })
-});
+}); */
 
 
 
