@@ -1,6 +1,14 @@
 // Import express.js
 const express = require("express");
 
+
+
+
+
+
+
+
+
 // Create express app
 var app = express();
 
@@ -219,30 +227,34 @@ app.get("/find-out-more-susan-porter", function(req, res) {
 
 
 
+//defining our routes without using the OOP. class
+/* app.get("/online-therapy", function(req, res) {
+    var sql = 'SELECT TherapistName, Therapist_Reg_No FROM Therapist';
+    
 
-app.get("/online-therapy", function(req, res) {
-    var sql = 'SELECT DISTINCT T.Therapist_Reg_No, T.TherapistName, P.PatientID, P.PtName FROM Therapist T JOIN Patients P ON T.Therapist_Reg_No = P.Therapist_Reg_No';
-
-    // Asynchronously execute the SQL query
+    // we asynchronously executed the SQL query
     db.query(sql).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Patient ID</th><th>Patient Name</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.PatientID + '</td>';
-            output += '<td>' + row.PtName + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
+        res.render('docsmainpage', {results:results});
     }).catch(error => {
         // Handle any errors that occur during the database query
         console.error('Error fetching therapists linked to patients:', error);
         res.status(500).send('Error fetching therapists linked to patients');
     });
 });
+
+app.get("/singledoc/:Therapist_Reg_No", function(req, res){
+    var alldoc = req.params.Therapist_Reg_No;
+    var alldocsql ="SELECT * from therapist  WHERE TherapistName = ?";
+
+
+    
+    
+    db.query(alldocsql, [alldoc]).then(results =>{
+       res.render('alldocs', {results:results})
+
+
+    })
+}); */
 
 
 
@@ -387,6 +399,38 @@ class CommunicationLog {
 
 
         
+//Retrieving therapist information 
+/* app.get("/online-therapy", function(req, res) {
+    var sql = 'SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist';
+
+    db.query(sql).then(results => {
+        var output = '<table border="1px">';
+        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
+        for (var row of results) {
+            output += '<tr>';
+            output += '<td>' + row.Therapist_Reg_No + '</td>';
+            output += '<td>' + row.TherapistName + '</td>';
+            output += '<td>' + row.Experience + '</td>';
+            output += '<td>' + row.Speciality + '</td>';
+            output += '<td>' + row.Approach + '</td>';
+            output += '<td>' + row.Availability + '</td>';
+            output += '</tr>';
+        }
+        output += '</table>';
+        res.send(output);
+    })
+}); */
+
+
+//Retrieving individual information from Johnny Depp
+
+
+app.get("/find-out-more-johnny-depp", function(req, res) {
+    var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Johnny Depp'";
+    
+    
+
+    db.query(sql, ['Johnny Depp']).then(results => {
        
 
 
@@ -394,7 +438,7 @@ class CommunicationLog {
 // Create a route for /goodbye
 // Responds to a 'GET' request
 app.get("/", function(req, res) {
-    res.send("Hello world!");
+    res.send("Hello online therapy world!");
 });
 
 // Create a dynamic route for /hello/<name>, where name is any value provided by user
