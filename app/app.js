@@ -43,47 +43,8 @@ app.get("/", function(req, res) {
     });
     
 
-// app.get("/online-therapy", function(req, res) {
-//     var sql = 'SELECT DISTINCT Therapist_Reg_No, TherapistName FROM Therapist';
+// 
 
-//     // Asynchronously execute the SQL query
-//     db.query(sql).then(results => {
-//         var output = '<h1>List of Therapists</h1>';
-//         output += '<ul>';
-//         for (var row of results) {
-//             output += '<li>' + row.Therapist_Reg_No + ': ' + row.TherapistName + '</li>';
-//         }
-//         output += '</ul>';
-//         res.send(output);
-//     }).catch(error => {
-//         // Log the error to the console
-//         console.error('Error fetching therapists:', error);
-//         // Send an appropriate response with a status code of 500
-//         res.status(500).send('Error fetching therapists');
-//     });
-// });
-
-//Retrieving therapist information 
-app.get("/online-therapy", function(req, res) {
-    var sql = 'SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist';
-
-    db.query(sql).then(results => {
-        var output = '<table border="1px">';
-        output += '<tr><th>Therapist Registration Number</th><th>Therapist Name</th><th>Experience</th><th>Speciality</th><th>Preferred Approach</th><th>Availability</th></tr>';
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.Therapist_Reg_No + '</td>';
-            output += '<td>' + row.TherapistName + '</td>';
-            output += '<td>' + row.Experience + '</td>';
-            output += '<td>' + row.Speciality + '</td>';
-            output += '<td>' + row.Approach + '</td>';
-            output += '<td>' + row.Availability + '</td>';
-            output += '</tr>';
-        }
-        output += '</table>';
-        res.send(output);
-    })
-});
 
 
 //Retrieving individual information from Johnny Depp
@@ -198,7 +159,7 @@ app.get("/find-out-more-thomas-appleby", function(req, res) {
         output += '</table>';
         res.send(output);
     });
-});
+
 
 //Retrieving individual information from Susan Porter
 app.get("/find-out-more-susan-porter", function(req, res) {
@@ -423,12 +384,7 @@ class CommunicationLog {
 //Retrieving individual information from Johnny Depp
 
 
-app.get("/find-out-more-johnny-depp", function(req, res) {
-    var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Johnny Depp'";
-    
-    
 
-    db.query(sql, ['Johnny Depp']).then(results => {
        
 
 
