@@ -261,14 +261,16 @@ app.get("/online-therapy", function(req, res) {
 //Classes
 
 class Person {
-    constructor(name) {
+    constructor(name, phoneNumber) {
       this.name = name;
+      this.phoneNumber = phoneNumber;
     }
   }
   
   class Therapist extends Person {
     constructor(name, therapistRegistrationNumber, therapistPhoneNumber, experience, speciality, approach, availability, notes) {
       super(name);
+      super(phoneNumber)
       this.therapistRegistrationNumber = therapistRegistrationNumber;
       this.therapistPhoneNumber = therapistPhoneNumber;
       this.experience = experience;
@@ -283,6 +285,7 @@ class Person {
         therapistRegistrationNumber: this.therapistRegistrationNumber,
         therapistPhoneNumber: this.therapistPhoneNumber,
         name: this.name,
+        phoneNumber: this.phoneNumber,
         experience: this.experience,
         speciality: this.speciality,
         approach: this.approach,
@@ -291,19 +294,93 @@ class Person {
       };
     }
    
-    // Setter method to improve encapsulation
-    setAvailability(newAvailability) {
-        this.availability = newAvailability;
   }
+
+
+  class Patient extends Person{
+    constructor(patientID, name, patientDOB, patientPhoneNumber, patientEmailAddress) {
+      this.patientID = patientID;
+      super(name) = patientName;
+      this.patientDOB = patientDOB;
+      this.patientPhoneNumber = patientPhoneNumber;
+      this.patientEmailAddress = patientEmailAddress;
+    }
   
+    // Function to retrieve patient information
+    getPatientInfo() {
+      return {
+        patientID: this.patientID,
+        name: this.name,
+        patientDOB: this.patientDOB,
+        patientPhoneNumber: this.patientPhoneNumber,
+        patientEmailAddress: this.patientEmailAddress,
+      };
+    }
+  }
+
+
+  class Consultation {
+    constructor(consultationID, consultationDate, patient, therapist, notes) {
+      this.consultationID = consultationID;
+      this.consultationDate = consultationDate;
+      this.patient = patient; 
+      this.therapist = therapist;
+      this.notes = notes;
+    }
+  
+    // Function to retrieve consultation details
+    getConsultationDetails() {
+      return {
+        consultationID: this.consultationID,
+        consultationDate: this.consultationDate,
+        patient: this.patient.getPatientInfo(),
+        therapist: this.therapist.getTherapistInfo(),
+        notes: this.notes,
+      };
+    }
+  }
+
+  class Payment {
+    constructor(paymentID, paymentDate, paymentMethod, paymentTime, status) {
+      this.paymentID = paymentID;
+      this.paymentDate = paymentDate;
+      this.paymentMethod = paymentMethod;
+      this.paymentTime = paymentTime;
+      this.status = status;
+    }
+  
+    // Function to retrieve payment details
+    getPaymentInfo() {
+      return {
+        paymentID: this.paymentID,
+        paymentDate: this.paymentDate,
+        paymentMethod: this.paymentMethod,
+        paymentTime: this.paymentTime,
+        status: this.status,
+      };
+    }
 }
+
+class CommunicationLog {
+    constructor(logID, typeOfCommunication, logDate, logTime, logContent) {
+      this.logID = logID;
+      this.typeOfCommunication = typeOfCommunication;
+      this.logDate = logDate;
+      this.logTime = logTime;
+      this.logContent = logContent;
+    }
   
-  // Example use
-  const therapist1 = new Therapist("TID111", "Dr. John doe", "10 years", "Marriage counselling", "Video Calls", "Monday and Wednesdays 9am-5pm");
-  
-  console.log(therapist1.getTherapistName()); // Output: Dr. John doe
-  therapist1.setAvailability("Friday 8am - 8pm");
-  console.log(therapist1.availability); // Output: Friday 8am - 8pm
+    // Function to retrieve Journal details
+    getJournalDetails() {
+      return {
+        logID: this.logID,
+        typeOfCommunication: this.typeOfCommunication,
+        logDate: this.logDate,
+        logTime: this.logTime,
+        logContent: this.logContent,
+      };
+    }
+  }
 
 
 
