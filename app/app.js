@@ -179,9 +179,7 @@ app.get("/find-out-more-thomas-appleby", function(req, res) {
 });
 
 
-//Retrieving individual information from Phoebe Prize
-app.get("/find-out-more-phoebe-prize", function(req, res) {
-    var sql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = ?";
+
     
 
     db.query(sql, ['Phoebe Prize']).then(results => {
