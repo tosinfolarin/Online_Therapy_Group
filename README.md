@@ -17,7 +17,7 @@ Steps:
 --------npm install 
 Run the MySQL PHPMyAdmin server on port 8085.
 Run the Express.js server:
-Using docker
+Using docker:
 --------Docker-compose up
 Access the application in your web browser at http://localhost:2000.
 
@@ -25,7 +25,8 @@ Access the application in your web browser at http://localhost:2000.
 Contents retrieved from database: The application interacts with the MySQL database to retrieve therapist information and content.
 Displaying Content: Content from the database is dynamically rendered using Pug templates.
 Object-Oriented Routing: The routing system is implemented using an Object-Oriented Programming approach. This made our code simple to read and understand
-#Contributors
+
+# Contributors
 Faruk – farukstaticpage
 Theo – Theo
 Jumoke - olufeloj
