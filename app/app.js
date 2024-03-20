@@ -285,30 +285,6 @@ app.get("/online-therapy", function(req, res) {
      });
  });
 
-// Task 2 display a formatted list of students
-/* app.get("/all-students-formatted", function(req, res) {
-    var sql = 'select * from Students';
-    // As we are not inside an async function we cannot use await
-    // So we use .then syntax to ensure that we wait until the 
-    // promise returned by the async function is resolved before we proceed
-    var output = '<table border="1px">';
-    db.query(sql).then(results => {
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.id + '</td>';
-            output += '<td>' + '<a href="./single-student/' + row.id + '">' + row.name + '</a>' + '</td>';
-            output += '</tr>'
-        }
-        output+= '</table>';
-        res.send(output);
-    });
-});
- */
-
-
-
-
-
 
 
 
