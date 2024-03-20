@@ -16,6 +16,7 @@ app.use(express.static("static"));
 // Get the functions in the db.js file to use
 const db = require('./services/db');
 
+<<<<<<< HEAD
 // Create a route for root - /
 // app.get("/", function(req, res) {
 //     res.send("Hello Theo!");
@@ -30,41 +31,21 @@ const db = require('./services/db');
  app.get("/", function(req, res) {
      res.render("index", {'title':'My index page', 'heading':'My heading'});
  });
+=======
+>>>>>>> olufeloj
 
 
-// Create a route for root - /
-app.get("/", function(req, res) {
-    // Set up an array of data
-    var test_data = ['one', 'two', 'three', 'four'];
-    // Send the array through to the template as a variable called data
-    res.render("index", 
-                {'title':'My index page', 'heading':'My heading', 'data':test_data});
+
+
+
+
+
+
+
+// This is my profile page for the online therapy
+app.get("/profilepage", function(req, res) {
+    res.render('profile')
 });
-
-
-// app.get("/all-students", function(req, res) {
-//     sql = 'select * from Students';
-//     db.query(sql).then(results => {
-//         let data = []
-//         for(let i=0; i<results.length; i++){
-//             res.write(results[i].name)
-//         }
-//         res.end()
-//         console.log(data);
-//     });
-// });
-
-
-app.get("/db_test", function(req, res) {
-    // Assumes a table called test_table exists in your database
-   var sql = 'select * from Therapist';
-    db.query(sql).then(results => {
-        console.log(results);
-        res.send(results)
-    });
-});
-
-
 
 
 // app.get("/online-therapy", function(req, res) {
@@ -126,25 +107,6 @@ app.get("/online-therapy", function(req, res) {
      });
  });
 
-// Task 2 display a formatted list of students
-/* app.get("/all-students-formatted", function(req, res) {
-    var sql = 'select * from Students';
-    // As we are not inside an async function we cannot use await
-    // So we use .then syntax to ensure that we wait until the 
-    // promise returned by the async function is resolved before we proceed
-    var output = '<table border="1px">';
-    db.query(sql).then(results => {
-        for (var row of results) {
-            output += '<tr>';
-            output += '<td>' + row.id + '</td>';
-            output += '<td>' + '<a href="./single-student/' + row.id + '">' + row.name + '</a>' + '</td>';
-            output += '</tr>'
-        }
-        output+= '</table>';
-        res.send(output);
-    });
-});
- */
 
 
 
@@ -154,6 +116,7 @@ app.get("/online-therapy", function(req, res) {
 
 
 
+<<<<<<< HEAD
 //Retrieving therapist information 
 app.get("/online-therapy", function(req, res) {
     var sql = 'SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist';
@@ -294,6 +257,14 @@ app.get("/db_test", function(req, res) {
         console.log(data);
     });
 });
+=======
+
+
+        
+       
+
+
+>>>>>>> olufeloj
 
 // Create a route for /goodbye
 // Responds to a 'GET' request
