@@ -1,0 +1,26 @@
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='signin.css')
+  title Document
+.wrapper
+  header Login Form
+  form(action='#')
+    .field.email
+      .input-area
+        input(type='text' placeholder='Email Address')
+        i.icon.fas.fa-envelope
+        i.error.error-icon.fas.fa-exclamation-circle
+      .error.error-txt Email can&apos;t be blank
+    .field.password
+      .input-area
+        input(type='password' placeholder='Password')
+        i.icon.fas.fa-lock
+        i.error.error-icon.fas.fa-exclamation-circle
+      .error.error-txt Password can&apos;t be blank
+    .pass-txt
+      a(href='#') Forgot password?
+    input(type='submit' value='Login')
+  .sign-txt
+    | Not yet member? 
+    a(href='#') Signup now
