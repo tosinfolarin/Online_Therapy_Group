@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Online Therapy Application
 This repository contains the codebase for our online therapy application that was built using Express.js, MySQL, Docker, Node.js, and Pug. The application utilizes Object-Oriented Programming (OOP) principles for routing.
 # In this app we have implemented some Features such as:
@@ -27,11 +26,14 @@ Contents retrieved from database: The application interacts with the MySQL datab
 Displaying Content: Content from the database is dynamically rendered using Pug templates.
 Object-Oriented Routing: The routing system is implemented using an Object-Oriented Programming approach. This made our code simple to read and understand
 
+
 # Contributors
 Faruk – farukstaticpage
 Theo – Theo
 Jumoke - olufeloj
 
-=======
-# check the main branch
->>>>>>> farukstaticpage
+# check the main branch and run the server from the main branch
+Main branch - Develop
+
+
+# Thank you ......
