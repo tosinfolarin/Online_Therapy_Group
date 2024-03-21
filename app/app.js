@@ -17,6 +17,7 @@ const db = require('./services/db');
 
 
 
+<<<<<<< HEAD
 app.get("/", function(req, res) {
         res.render("signin");
     });
@@ -36,6 +37,21 @@ app.get("/db_test", function(req, res) {
 
 
 
+=======
+
+
+
+
+
+
+
+// This is my profile page for the online therapy
+app.get("/profilepage", function(req, res) {
+    res.render('profile')
+});
+
+
+>>>>>>> olufeloj
 // app.get("/online-therapy", function(req, res) {
 //     var sql = 'SELECT DISTINCT Therapist_Reg_No, TherapistName FROM Therapist';
 
@@ -257,6 +273,7 @@ app.get("/online-therapy", function(req, res) {
      });
  });
 
+<<<<<<< HEAD
 
 //Classes
 
@@ -385,6 +402,42 @@ class CommunicationLog {
 
 
 // Start server on port 2000
+=======
+
+
+
+
+
+
+
+
+
+
+
+        
+       
+
+
+
+// Create a route for /goodbye
+// Responds to a 'GET' request
+app.get("/", function(req, res) {
+    res.send("Hello world!");
+});
+
+// Create a dynamic route for /hello/<name>, where name is any value provided by user
+// At the end of the URL
+// Responds to a 'GET' request
+app.get("/hello/:name", function(req, res) {
+    // req.params contains any parameters in the request
+    // We can examine it in the console for debugging purposes
+    console.log(req.params);
+    //  Retrieve the 'name' parameter and use it in a dynamically generated page
+    res.send("Hello " + req.params.name);
+});
+
+// Start server on port 3000
+>>>>>>> olufeloj
 app.listen(2000,function(){
     console.log(`Server running at http://127.0.0.1:2000/`);
 });
