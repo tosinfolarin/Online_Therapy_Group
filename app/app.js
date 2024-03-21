@@ -469,7 +469,7 @@ app.get("/hello/:name", function(req, res) {
 
 
 //Retrieving individual information from Johnny Depp
-app.get("/find-out-more-johnny-depp", function(req, res) {
+/* app.get("/find-out-more-johnny-depp", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Johnny Depp'";
     
     
@@ -488,11 +488,11 @@ app.get("/doctordetails/:Therapist_Reg_No", function(req,res){
     });
 });
 
-
+ */
 
 
 //Retrieving individual information from Jane Carter
-app.get("/find-out-more-jane-carter", function(req, res) {
+/* app.get("/find-out-more-jane-carter", function(req, res) {
     var sql2 = "SELECT * FROM Therapist WHERE TherapistName = 'jane Carter'";
     
 
@@ -507,10 +507,10 @@ app.get("/jane-carter/:TherapistName", function(req,res){
     db.query(docsql2, [docsId2]).then(results =>{
        res.render('jc',{results:results} );
     });
-});
+}); */
 
 //Retrieving individual information from Thomas Appleby
-app.get("/find-out-more-thomas-appleby", function(req, res) {
+/* app.get("/find-out-more-thomas-appleby", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Thomas Appleby'";
     
 
@@ -525,14 +525,14 @@ app.get("/Thomas/:Therapist_Reg_No", function(req,res){
     db.query(docsql, [docsId]).then(results =>{
        res.render('TA',{results:results} );
     });
-});
+}); */
 
 
 
 
     
 //Retrieving individual information from Phoebe Price
-app.get("/find-out-more-phoebe-prize", function(req, res) {
+/* app.get("/find-out-more-phoebe-prize", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Thomas App'";
     
 
@@ -548,11 +548,11 @@ app.get("/phoebe/:Therapist_Reg_No", function(req,res){
     db.query(docsql, [docsId]).then(results =>{
         res.render('pp', {results:results});
     })
-})
+}) */
 
 
 //Retrieving individual information from Susan Porter
-app.get("/find-out-more-susan-porter", function(req, res) {
+/* app.get("/find-out-more-susan-porter", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Susan Porter'";
     
 
@@ -568,7 +568,7 @@ app.get("/susan/:Therapist_Reg_No", function(req,res){
         res.render('sp', {results:results});
     })
 })
-
+ */
 
 
 
@@ -631,129 +631,7 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
  });
 
 
-//Classes
 
-class Person {
-    constructor(name, phoneNumber) {
-      this.name = name;
-      this.phoneNumber = phoneNumber;
-    }
-  }
-  
-  class Therapist extends Person {
-    constructor(name, therapistRegistrationNumber, therapistPhoneNumber, experience, speciality, approach, availability, notes) {
-      super(name);
-      super(phoneNumber)
-      this.therapistRegistrationNumber = therapistRegistrationNumber;
-      this.therapistPhoneNumber = therapistPhoneNumber;
-      this.experience = experience;
-      this.speciality = speciality;
-      this.approach = approach;
-      this.availability = availability;
-      this.notes = notes;
-    }
-  
-    getTherapistInfo() {
-      return {
-        therapistRegistrationNumber: this.therapistRegistrationNumber,
-        therapistPhoneNumber: this.therapistPhoneNumber,
-        name: this.name,
-        phoneNumber: this.phoneNumber,
-        experience: this.experience,
-        speciality: this.speciality,
-        approach: this.approach,
-        availability: this.availability,
-        notes: this.notes,
-      };
-    }
-   
-  }
-
-
-  class Patient extends Person{
-    constructor(patientID, name, patientDOB, patientPhoneNumber, patientEmailAddress) {
-      this.patientID = patientID;
-      super(name) = patientName;
-      this.patientDOB = patientDOB;
-      this.patientPhoneNumber = patientPhoneNumber;
-      this.patientEmailAddress = patientEmailAddress;
-    }
-  
-    // Function to retrieve patient information
-    getPatientInfo() {
-      return {
-        patientID: this.patientID,
-        name: this.name,
-        patientDOB: this.patientDOB,
-        patientPhoneNumber: this.patientPhoneNumber,
-        patientEmailAddress: this.patientEmailAddress,
-      };
-    }
-  }
-
-
-  class Consultation {
-    constructor(consultationID, consultationDate, patient, therapist, notes) {
-      this.consultationID = consultationID;
-      this.consultationDate = consultationDate;
-      this.patient = patient; 
-      this.therapist = therapist;
-      this.notes = notes;
-    }
-  
-    // Function to retrieve consultation details
-    getConsultationDetails() {
-      return {
-        consultationID: this.consultationID,
-        consultationDate: this.consultationDate,
-        patient: this.patient.getPatientInfo(),
-        therapist: this.therapist.getTherapistInfo(),
-        notes: this.notes,
-      };
-    }
-  }
-
-  class Payment {
-    constructor(paymentID, paymentDate, paymentMethod, paymentTime, status) {
-      this.paymentID = paymentID;
-      this.paymentDate = paymentDate;
-      this.paymentMethod = paymentMethod;
-      this.paymentTime = paymentTime;
-      this.status = status;
-    }
-  
-    // Function to retrieve payment details
-    getPaymentInfo() {
-      return {
-        paymentID: this.paymentID,
-        paymentDate: this.paymentDate,
-        paymentMethod: this.paymentMethod,
-        paymentTime: this.paymentTime,
-        status: this.status,
-      };
-    }
-}
-
-class CommunicationLog {
-    constructor(logID, typeOfCommunication, logDate, logTime, logContent) {
-      this.logID = logID;
-      this.typeOfCommunication = typeOfCommunication;
-      this.logDate = logDate;
-      this.logTime = logTime;
-      this.logContent = logContent;
-    }
-  
-    // Function to retrieve Journal details
-    getJournalDetails() {
-      return {
-        logID: this.logID,
-        typeOfCommunication: this.typeOfCommunication,
-        logDate: this.logDate,
-        logTime: this.logTime,
-        logContent: this.logContent,
-      };
-    }
-  }
 
 
 
