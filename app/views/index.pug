@@ -1,0 +1,149 @@
+doctype html
+head
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  style 
+      include ./assets/css/custom.css
+  link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==' crossorigin='anonymous' referrerpolicy='no-referrer')
+  title Online Therapy
+nav
+  input#check(type='checkbox')
+  label.checkbtn(for='check')
+    i.fa.fa-bars(aria-hidden='true')
+  a.fgalogo(href='#')
+  label.logo TOF-ONLINETHERAPY
+  ul.menus
+    li
+      a.active(href='#') Home
+    li
+      a.active(href='Therapists.html') Therapists
+    li
+      a.active(href='profile.html') Profile
+    li
+      a(href='signin.html')
+        span.signbtn  Login
+section#maintop.list
+  .lister
+    .card-container10
+      div
+        .card1
+          .card-body1
+            .details
+              div
+                h1  TOF-ONLINETHERAPY is your best place to get virtual therapy assistant
+              .title
+                h1  .
+            p.card-text1
+              | Get the support you deserve, from the comfort of your own home.
+              | We offer confidential, effective online therapy to help you navigate life&apos;s challenges and reach your mental health goals.
+            a.btn-primary1(href='http://127.0.0.1:2000/online-therapy')
+              | Find Therapists
+              i.fa-solid.fa-arrow-down.fa-bounce
+section.services
+  div
+    h1.SO SERVICES OFFERED
+    p
+      | Our Online therapy will provide a safe, convenient and easy way to get mental health support remotely. It basically involves sessions conducted through video calls, phone calls, or messaging platforms. Our Online therapy can help people with  various mental health concerns, including:
+    ul
+      li Depression
+      li Anxiety
+      li Stress
+      li Relationship issues
+      li Family conflicts
+      li Grief and loss
+  .service-cards
+    .card
+      img(src='assets/marriage.jpg' alt='Marriage Counselling')
+      h2 Marriage Counselling
+    .card
+      img(src='assets/therapist_or_friend_talking_to_sad_man.jpg' alt='Depression Counselling')
+      h2 Depression Counselling
+    .card
+      img(src='/images/anxiety.jpg' alt='Anxiety Counselling')
+      h2 Anxiety Counselling
+    .card
+      img(src='./views/assets/lonely.jpg' alt='Loneliness Counselling')
+      h2 Loneliness Counselling
+section#games.gamelist1
+  .top1
+    h1
+      | Meet Our Therapist
+  .card-container10
+    .card2
+      img.card1-img-top(src='assets/doctor 1.jpg' alt='...')
+      .card-body2
+        .gamedetails
+          div
+            h1  Dr. johnny depp
+          div
+            h1.doctype  Specialty: Clinical Psychologist
+        p.card-text2
+          | I believe therapy provides a safe space for individuals to explore their thoughts and emotions, leading to personal growth and healing.
+          | Integrative approach including cognitive-behavioral therapy (CBT), mindfulness techniques, and interpersonal therapy to help individuals manage anxiety, depression, and trauma.
+        a.btn-primary1(href='http://127.0.0.1:2000/find-out-more-johnny-depp') View More
+    .card2
+      img.card1-img-top(src='assets/doctor 2.jpg' alt='...')
+      .card-body2
+        .gamedetails
+          div
+            h1
+              | Dr. jane carter
+          div
+            h1.doctype  Specialty: Psychiatrist
+        p.card-text2
+          | Therapy is an essential part of mental health treatment, offering individuals the opportunity to understand themselves better and develop coping strategies.
+          | Provides medication management along with psychotherapy, emphasizing a holistic approach to mental health care.
+        a.btn-primary1(href='http://127.0.0.1:2000/find-out-more-jane-carter') View More
+    .card2
+      img.card1-img-top(src='assets/doctor 3.jpg' alt='...')
+      .card-body2
+        .gamedetails
+          div
+            h1  Dr. Thomas Appleby
+          div
+            h1.doctype  Specialty: Marriage and Family Therapist
+        p.card-text2
+          | Therapy can strengthen relationships and help individuals and families navigate through challenging times by fostering communication and understanding.
+          | Uses systemic therapy approaches to address relationship issues, communication breakdowns, and family dynamics, focusing on strengths and solutions.
+        a.btn-primary1(href='http://127.0.0.1:2000/find-out-more-thomas-appleby') View More
+    .card2
+      img.card1-img-top(src='assets/doctor 4.jpg' alt='...')
+      .card-body2
+        .gamedetails
+          div
+            h1  Dr. Susan Porter
+          div
+            h1.doctype  Specialty: Counseling Psychologist
+        p.card-text2
+          | Therapy offers a supportive environment where individuals can explore their concerns and develop insights, leading to positive changes in their lives.
+          | Employs a person-centered approach, tailored to each individual&apos;s needs, incorporating techniques from cognitive-behavioral therapy (CBT), solution-focused therapy, and mindfulness practices.
+        a.btn-primary1(href='http://127.0.0.1:2000/find-out-more-susan-porter') View More
+section
+  .col-md
+    .carddd
+      .card-bodyyy.text-center
+        .icon
+          i.bi.bi-laptop
+        h3.card-titleee Is Therapy for me?
+        p.card-texttt
+          | Have you been going through alot and you think you do not need to pour out your thoughts? Check out our blog sites to see what others think about sharing their thoughts
+        a.btn.btn-dark(href='#')
+          i.fa-solid.fa-arrow-down.fa-bounce
+br
+section.card-container
+  .card-item
+    .card-image(style='background-image: url(assets/anziety.jpg)')
+      .card-text
+        a(href='https://suzannethomas.co.uk/?gad_source=1&gclid=CjwKCAiAxaCvBhBaEiwAvsLmWFqone_FC6m-jz4CVyE_qfx_QwedD02JpQlgz-X_D-VYhiP5gpKMshoC9J0QAvD_BwE') Anxiety
+  .card-item
+    .card-image(style='background-image: url(assets/marriagepics.jpg)')
+      .card-text
+        a(href='https://marriagecounselingblog.com/') Marriage Problems
+  .card-item
+    .card-image(style='background-image: url(assets/depression.jpg)')
+      .card-text
+        a(href='https://www.therapyforyou.co.uk/blog/tag/26/depression') Depression
+  .card-item
+    .card-image(style='background-image: url(assets/suicide.jpg)')
+      .card-text
+        a(href='https://www.samh.org.uk/about-us/news-and-blogs/blog-i-know-talking-about-mental-health-struggles-can-save-lives-because-im') Suicide

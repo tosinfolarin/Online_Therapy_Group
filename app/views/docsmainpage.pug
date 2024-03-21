@@ -1,0 +1,40 @@
+doctype html
+html
+    head
+        title Therapists Information
+        style.
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #4ba976;
+            }
+            tr:hover {
+                background-color: #f5f5f5;
+            }
+            a {
+                text-decoration: none;
+                color: blue;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+    body
+        table(border="1px")
+            tr
+                th Therapists ID
+                th Therapist Names
+                th click for more info
+            each row in results
+                tr
+                    td= row.Therapist_Reg_No
+                    td= row.TherapistName
+                    td  
+                        a(href='/singledoc/' + row.TherapistName) #{row.TherapistName}
