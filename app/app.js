@@ -138,6 +138,10 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
      });
  });
 
+ app.get("/", function(req, res) {
+  res.render("signin");
+});
+
 
 //Classes
 
