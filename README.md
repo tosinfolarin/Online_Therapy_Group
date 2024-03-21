@@ -1,62 +1,33 @@
-# MySQL, PHPMyAdmin and Node.js (ready for Express development)
+# Online Therapy Application
+This repository contains the codebase for our online therapy application that was built using Express.js, MySQL, Docker, Node.js, and Pug. The application utilizes Object-Oriented Programming (OOP) principles for routing, enhancing modularity and maintainability.
+# In this app we have implemented some Features such as:
+Express.js: Used as the web application framework for Node.js to handle routing and middleware.
+MySQL: Utilized for database management, storing therapist information and content.
+Docker: Used for containerization, ensuring consistent deployment across different environments.
+Node.js: The JavaScript runtime environment used to execute server-side code.
+Pug: A template engine for Node.js, used for rendering dynamic HTML content.
+OOP Method for Routing: Implemented a class-based approach for routing, enhancing code organization and reusability.
 
-This will install Mysql and phpmyadmin (including all dependencies to run Phpmyadmin) AND node.js
+# This is how the app was setup and running
+Steps:
+# Clone the repository:
+--------git clone repository_url
+--------cd repository_name
+# Try to Install necessary dependencies:
+--------npm install 
+Run the MySQL PHPMyAdmin server on port 8085.
+Run the Express.js server:
+Using docker
+--------Docker-compose up
+Access the application in your web browser at http://localhost:2000.
 
-This receipe is for development - Node.js is run in using supervisor: changes to any file in the app will trigger a rebuild automatically.
+# What we were able to achieve after the setup and everything
+Contents retrieved from database: The application interacts with the MySQL database to retrieve therapist information and content.
+Displaying Content: Content from the database is dynamically rendered using Pug templates.
+Object-Oriented Routing: The routing system is implemented using an Object-Oriented Programming approach. This made our code simple to read and understand
+# Contributors
+Faruk – farukstaticpage
+Theo – Theo
+Jumoke - olufeloj
+Develop - main branch
 
-For security, this receipe uses a .env file for credentials.  A sample is provided in the env-sample file. If using these files for a fresh project, copy the env-sample file to a file called .env.  Do NOT commit the changed .env file into your new project for security reasons (in the node package its included in .gitignore so you can't anyway)
-
-In node.js, we use the MySQl2 packages (to avoid problems with MySQL8) and the dotenv package to read the environment variables.
-
-Local files are mounted into the container using the 'volumes' directive in the docker-compose.yml for ease of development.
-
-### Super-quickstart your new project:
-
-* Make sure that you don't have any other containers running usind docker ps
-* run ```docker-compose up --build```
-
-#### Visit phphmyadmin at:
-
-http://localhost:8085/
-
-#### Visit your express app at:
-
-http://localhost:2000
-
-For reference, see the video at: https://roehampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6f290a6b-ba94-4729-9632-adcf00ac336e
-
-NB if you are running this on your own computer rather than the azure labs that has been set up for you, you will need to install the following:
-
-* node.js  (windows: https://nodejs.org/en/download/)
-* docker desktop (for windows, this will also prompt you to install linux subsystem for windows https://docs.docker.com/desktop/windows/install/ )
-
-### Whats provided in these scaffolding files?
-
-
-  * A docker setup which will provide you with node.js, mysql and phpmyadmin, including the configuration needed so that both node.js AND phpmyadmin can 'see' and connect to your mysql database.  If you don't use docker you'll have to set up and connect each of these components separately.
-  * A basic starting file structure for a node.js app.
-  * A package.json file that will pull in the node.js libraries required and start your app as needed.
-  * A db.js file which provides all the code needed to connect to the mysql database, using the credentials in the .env file, and which provides a query() function that can send queries to the database and receive a result.  In order to use this (ie. interact with the database, you simply need to include this file in any file you create that needs this database interaction) with the following code:
-
-```const db = require('./services/db');
-```
-
-____
-
-Useful commands:
-
-Get a shell in any of the containers
-
-```bash
-docker exec -it <container name> bash -l
-```
-
-Once in the database container, you can get a MySQL CLI in the usual way
-
-```bash
-mysql -uroot -p<password> 
-```
-# SoftwareDevelopmentLabs
-
-
-# check the main branch
