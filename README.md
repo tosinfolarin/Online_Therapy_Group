@@ -26,6 +26,8 @@ Contents retrieved from database: The application interacts with the MySQL datab
 Displaying Content: Content from the database is dynamically rendered using Pug templates.
 Object-Oriented Routing: The routing system is implemented using an Object-Oriented Programming approach. This made our code simple to read and understand
 
+OUR OOP IS LOCATED IN THE MODELS FOLDER
+
 
 # Contributors
 Faruk – farukstaticpage
