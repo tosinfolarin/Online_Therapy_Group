@@ -204,7 +204,7 @@ app.get("/susan/:Therapist_Reg_No", function(req,res){
 
 
 
-//defining our routes without using the OOP. class
+//defining our routes without using the OOP. class please check the Models folder to see our OOP structure
 /* app.get("/online-therapy", function(req, res) {
     var sql = 'SELECT TherapistName, Therapist_Reg_No FROM Therapist';
     
@@ -250,7 +250,7 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 });
 
 
-//Classes
+//TClasses
 
 class Person {
     constructor(name, phoneNumber) {
