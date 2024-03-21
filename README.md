@@ -35,5 +35,7 @@ Jumoke - olufeloj
 # check the main branch and run the server from the main branch
 Main branch - Develop
 
+Our github says we have 5 branches, Develop branch is our main/default branch. plese ignore the branch that says main. 
+
 
 # Thank you ......
