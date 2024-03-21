@@ -17,27 +17,6 @@ const db = require('./services/db');
 
 
 
-<<<<<<< HEAD
-app.get("/", function(req, res) {
-        res.render("signin");
-    });
-    
-
-
-
-app.get("/db_test", function(req, res) {
-    // Assumes a table called test_table exists in your database
-   var sql = 'select * from Therapist';
-    db.query(sql).then(results => {
-        console.log(results);
-        res.send(results)
-    });
-});
-
-
-
-
-=======
 
 
 
@@ -51,7 +30,6 @@ app.get("/profilepage", function(req, res) {
 });
 
 
->>>>>>> olufeloj
 // app.get("/online-therapy", function(req, res) {
 //     var sql = 'SELECT DISTINCT Therapist_Reg_No, TherapistName FROM Therapist';
 
@@ -273,7 +251,6 @@ app.get("/online-therapy", function(req, res) {
      });
  });
 
-<<<<<<< HEAD
 
 //Classes
 
@@ -402,7 +379,6 @@ class CommunicationLog {
 
 
 // Start server on port 2000
-=======
 
 
 
@@ -437,7 +413,6 @@ app.get("/hello/:name", function(req, res) {
 });
 
 // Start server on port 3000
->>>>>>> olufeloj
 app.listen(2000,function(){
     console.log(`Server running at http://127.0.0.1:2000/`);
 });
