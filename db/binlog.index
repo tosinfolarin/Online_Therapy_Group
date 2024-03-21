@@ -82,4 +82,8 @@
 ./binlog.000064
 ./binlog.000065
 ./binlog.000066
+<<<<<<< HEAD
+>>>>>>> farukstaticpage
+=======
+./binlog.000067
 >>>>>>> farukstaticpage
