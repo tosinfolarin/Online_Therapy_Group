@@ -82,6 +82,13 @@ html(lang='en')
           i.icon.fas.fa-envelope
           i.error.error-icon.fas.fa-exclamation-circle
         .error.error-txt Surname can&apos;t be blank
+        .field.email
+        label Please enter a username
+        .input-area
+          input(type='text' placeholder='Username')
+          i.icon.fas.fa-envelope
+          i.error.error-icon.fas.fa-exclamation-circle
+        .error.error-txt Username can&apos;t be blank
       .field.email
         label Please enter your email address
         .input-area
@@ -99,14 +106,14 @@ html(lang='en')
       .field
         label What type of therapy are you interested in?
         select
-          option(value='loneliness') Loneliness
-          option(value='marriage') Marriage Counselling
-          option(value='depression') Depression
-          option(value='anxiety') Anxiety
-          option(value='other') Other
+          option(value='Depression') Depression
+          option(value='Anxiety') Anxiety
+          option(value='Relationships') Relationships
+          option(value='Family') Family Conflicts
+          option(value='Grief and Loss') Grief and Loss
       .field
-        label Please enter your age
-        input(type='number' placeholder='Your Age')
+          label Please enter your date of birth
+          input(type='date' placeholder='YYYY-MM-DD' style='display: block; width: 100%;')
       .field
         label What leads you to therapy today?
         textarea(placeholder='Briefly describe your reasons for seeking therapy' style='width: 100%; max-width: 100%;')
@@ -116,10 +123,9 @@ html(lang='en')
           option(value='phone-call') Phone Call
           option(value='video-call') Video Call
           option(value='text') Text
-      .pass-txt
-        a(href='#') Forgot password?
+
       .login-btn-container
         input(type='submit' value='Sign Up')
     .sign-txt
       | Already a member? 
-      a(href='#') Login now
+      a(href='/signin.html') Login now
