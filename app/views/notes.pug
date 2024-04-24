@@ -1,0 +1,11 @@
+extends layout
+block content
+    h1 #{this.patientName}'s Journal
+    h1 This is some info
+        
+    h2 Add some thoughts and feelings:
+    form(action='/add-note', method='POST')
+        input(type='hidden' name='this.patientName' value=this.patientName)
+        textarea(name='note' rows=6 cols=50)
+        div 
+        input(type='submit' value='Submit')

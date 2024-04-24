@@ -14,6 +14,10 @@ app.use(express.static("static"));
 // Get the functions in the db.js file to use
 const db = require('./services/db');
 
+//This ensures that we can use the POST parameter
+app.use(express.urlencoded({ extended: true }));
+
+
 
 
 const TherapistController = require('./models/Therapistcontrol');
@@ -35,7 +39,10 @@ app.get('/singledoc/:Therapist_Reg_No', (req, res) => therapistController.getSin
 
 
 
-
+// When users click on the sign in button they are able to sign in
+app.get("/notes", function(req, res) {
+  res.render("notes");
+});
 
 
 
@@ -262,47 +269,43 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 //TClasses
 
-class Person {
-    constructor(name, phoneNumber) {
-      this.name = name;
-      this.phoneNumber = phoneNumber;
-    }
-  }
   
-  class Therapist extends Person {
-    constructor(name, therapistRegistrationNumber, therapistPhoneNumber, experience, speciality, approach, availability, notes) {
-      super(name);
-      super(phoneNumber)
-      this.therapistRegistrationNumber = therapistRegistrationNumber;
-      this.therapistPhoneNumber = therapistPhoneNumber;
-      this.experience = experience;
-      this.speciality = speciality;
-      this.approach = approach;
-      this.availability = availability;
-      this.notes = notes;
+  class Therapist {
+    constructor(therapistsName, therapistRegistrationNumber, therapistPhoneNumber, experience, speciality, approach, availability, notes) {
+        this.therapistsName = therapistsName; 
+        this.therapistPhoneNumber = therapistPhoneNumber; 
+        this.therapistRegistrationNumber = therapistRegistrationNumber;
+        this.experience = experience;
+        this.speciality = speciality;
+        this.approach = approach;
+        this.availability = availability;
+        this.notes = notes;
     }
-  
+
     getTherapistInfo() {
-      return {
-        therapistRegistrationNumber: this.therapistRegistrationNumber,
-        therapistPhoneNumber: this.therapistPhoneNumber,
-        name: this.name,
-        phoneNumber: this.phoneNumber,
-        experience: this.experience,
-        speciality: this.speciality,
-        approach: this.approach,
-        availability: this.availability,
-        notes: this.notes,
-      };
+        return {
+            therapistRegistrationNumber: this.therapistRegistrationNumber,
+            therapistPhoneNumber: this.therapistPhoneNumber,
+            name: this.therapistsName, 
+            experience: this.experience,
+            speciality: this.speciality,
+            approach: this.approach,
+            availability: this.availability,
+            notes: this.notes,
+        };
     }
-   
-  }
+}
 
 
-  class Patient extends Person{
-    constructor(patientID, name, patientDOB, patientPhoneNumber, patientEmailAddress) {
+
+
+
+
+
+  class Patient {
+    constructor(patientID, patientName, patientDOB, patientPhoneNumber, patientEmailAddress) {
       this.patientID = patientID;
-      super(name) = patientName;
+      this.patientName = patientName;
       this.patientDOB = patientDOB;
       this.patientPhoneNumber = patientPhoneNumber;
       this.patientEmailAddress = patientEmailAddress;
@@ -319,6 +322,38 @@ class Person {
       };
     }
   }
+
+
+
+
+
+  // This Was added in conjunction with Lisas video 
+
+  app.post('/add-note', async function (req, res) {
+    params = req.body;
+    // Adding a try/catch block which will be useful later when we add to the database
+    var student = new Patient(params.this.patientID);
+    try {
+         await patient.addPatientNote(params.note);
+         res.send('form submitted');
+        }
+     catch (err) {
+         console.error(`Error while adding note `, err.message);
+     }
+     // Just a little output for now
+     res.send('form submitted');
+
+});
+
+
+
+
+
+
+
+
+
+
 
 
   class Consultation {
