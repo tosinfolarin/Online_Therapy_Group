@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Sign In Page
+    title Sign Up Page
     style.
       
       header {
@@ -67,7 +67,7 @@ html(lang='en')
     
     .wrapper
       form(action='#')
-      header Sign In 
+      header Sign Up Form
       .field.firstName
         label First Name
         .input-area
@@ -96,11 +96,30 @@ html(lang='en')
           i.icon.fas.fa-lock
           i.error.error-icon.fas.fa-exclamation-circle
         .error.error-txt Password can&apos;t be blank
-
+      .field
+        label What type of therapy are you interested in?
+        select
+          option(value='loneliness') Loneliness
+          option(value='marriage') Marriage Counselling
+          option(value='depression') Depression
+          option(value='anxiety') Anxiety
+          option(value='other') Other
+      .field
+        label Please enter your age
+        input(type='number' placeholder='Your Age')
+      .field
+        label What leads you to therapy today?
+        textarea(placeholder='Briefly describe your reasons for seeking therapy' style='width: 100%; max-width: 100%;')
+      .field
+        label How would you prefer to communicate with your therapist?
+        select
+          option(value='phone-call') Phone Call
+          option(value='video-call') Video Call
+          option(value='text') Text
       .pass-txt
         a(href='#') Forgot password?
       .login-btn-container
-        input(type='submit' value='Sign In')
+        input(type='submit' value='Sign Up')
     .sign-txt
-      | Not yet a member? 
-      a(href='#') Sign up now
+      | Already a member? 
+      a(href='#') Login now
