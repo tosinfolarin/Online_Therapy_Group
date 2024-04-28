@@ -34,7 +34,8 @@ html
                 th Experience
                 th Speciality
                 th Preferred Approach
-                th Availability
+                th Availa
+        button(type="button" class="btn btn-primary" id="myButton" style="font-size: 16px;") Click Me
             each row in results
                 tr
                     td= row.Therapist_Reg_No
@@ -44,6 +45,8 @@ html
                     td= row.Approach
                     td= row.Availability
                     td
-                        a(href='/doctordetails/' + row.Therapist_Reg_No)
+           
+                   a(href='/doctordetails/' + row.Therapist_Reg_No)
+         button(type="button" class="btn btn-primary" id="myButton" style="font-size: 16px;") Click Me
 
        

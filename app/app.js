@@ -11,7 +11,7 @@ app.set('views', './app/views');
 
 
 // Add static files location
-app.use(express.static("static"));
+app.use('./app/views', express.static("views"));
 
 // Get the functions in the db.js file to use
 const db = require('./services/db');
