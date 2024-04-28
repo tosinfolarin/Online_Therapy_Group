@@ -18,8 +18,7 @@ html
                         a(href='/doctordetails/' + row.Therapist_Reg_No) #{row.TherapistName} - Click for Details
         br
         
-        form.form-container(action="/submit" method="post")
-            div BOOK YOUR SESSION WITH ME
+        form.form-container#session-form(action="/submit-session" method="post" onsubmit="return showPaymentForm(event)")
             .form-group
                 label(for="firstName") First Name:
                 input(type="text", id="firstName", name="firstName", required)
@@ -48,4 +47,37 @@ html
                 label(for="preferredDateTime") Preferred Time and Date:
                 input(type="datetime-local", id="preferredDateTime", name="preferredDateTime", required)
             .form-group
-            button.btn-submit(type="submit") Submit
+                button.btn-submit(type="submit") Continue to payment
+
+    
+        form#payment-form.form-container(style="display: none;")
+            .form-group
+                label(for="cardNumber") Card Number:
+                input(type="text", id="cardNumber", name="cardNumber", required)
+            .form-group
+                label(for="expiryDate") Expiry Date:
+                input(type="text", id="expiryDate", name="expiryDate", required)
+            .form-group
+                label(for="cvv") CVV:
+                input(type="password", id="cvv", name="cvv", required)
+            .form-group
+                button.btn-submit(type="button" onclick="processPayment()") Pay
+
+       
+        div#payment-confirmation(style="display: none;")
+            p.donepayment Payment done. We will get in touch with you shortly to confirm your session details.
+
+    script.
+        function showPaymentForm(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById("session-form").style.display = "none"; // Hide session form
+            document.getElementById("payment-form").style.display = "block"; // Show payment form
+        }
+
+         function processPayment() {
+      // Here you can add code to process the payment
+      // For simplicity, we'll just display the payment confirmation message
+            document.getElementById("payment-form").style.display = "none"; // Hide payment form
+            document.getElementById("payment-confirmation").style.display = "block"; // Show payment confirmation message
+        }
+
