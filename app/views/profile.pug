@@ -1,57 +1,56 @@
 doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  style 
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    style 
       include ./Assets/css/mycss.css
-  
-  link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
-  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==' crossorigin='anonymous' referrerpolicy='no-referrer')
-  title profile
-.container
-  .profile-header
-    .profile-img
-      img(src='assets/doctor 1.jpg' width='200' alt='Profile Ima')
-    .profile-nav-info
-      h3.user-name Username
-    .profile-option
-      .notification
-        i.fa.fa-bell
-        span.alert-message 3
-  .main-bd
-    .left-side
-      .profile-side
-        p.mobile-no
-          i.fa.fa-phone
-          |  phone number
-        p.user-mail
-          i.fa.fa-envelope
-          |  email
-        .user-bio
-          h3 Username
-          p.bio
-        .profile-btn
-          button#chatBtn.chatbtn
-            i.fa.fa-comment
-            |  Previous session
-          button#Create-post.createbtn
-            i.fa.fa-plus
-            |  Future session
-    .right-side
-      .nav
-        ul
-          li.user-post.active(onclick='tabs(0)') Future Sessions
-          li.user-review(onclick='tabs(1)') Previous sessions
-          li.user-setting(onclick='tabs(2)')  Settings
-      .profile-body
-        .profile-posts.tab
-          h1 Future sessions
-          p The future sessions should display here
-        .profile-reviews.tab
-          h1 Previous session
-          p The previous sessions should show here
-        .profile-settings.tab
-          .account-setting
-            h1 Settings
-            p Small settings of account will be facilitated here
-script(src='profilepage.js')
+      
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
+    link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==' crossorigin='anonymous' referrerpolicy='no-referrer')
+    title profile
+  body
+    .container
+      .profile-header
+        .profile-img
+          img(src='assets/img/doctor 1.jpg' width='200' alt='Profile Image')
+        .profile-nav-info
+          h3.user-name Full Name  
+        .profile-option
+          .notification
+            i.fa.fa-bell
+            span.alert-message 3
+      .main-bd
+        .left-side
+          .profile-side
+            p.mobile-no
+              i.fa.fa-phone
+              |  phone number
+            p.user-mail
+              i.fa.fa-envelope
+              |  email
+            .user-bio
+              h3 Username
+              p.bio
+            .profile-btn
+              button#chatBtn.chatbtn
+                i.fa.fa-comment
+                |  Previous session
+              button#Create-post.createbtn
+                i.fa.fa-plus
+                |  Future session
+        .right-side
+          .nav
+            ul
+              li.user-post.active(onclick='tabs(0)') Future Sessions
+              li.user-review(onclick='tabs(1)') Previous sessions
+              li.user-setting(onclick='tabs(2)')  Settings
+          .profile-body
+            .profile-posts.tab
+              h1 Future sessions
+                p The future sessions should display here
+            .profile-reviews.tab
+              h1 Previous session
+                p The previous sessions should show here
+            .profile-settings.tab
+              .account-setting
+                h1
