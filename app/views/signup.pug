@@ -1,8 +1,7 @@
 doctype html
-
 html(lang='en')
   head
-    title Sign In Page
+    title Sign Up Page
     style.
       
       header {
@@ -68,21 +67,14 @@ html(lang='en')
     
     .wrapper
       form(action='#')
-      header Sign In 
+      header Sign Up Form
       .field.firstName
-        label First Name
+        label Full Name
         .input-area
-          input(type='text' placeholder='First Name')
+          input(type='text' placeholder='Full Name')
           i.icon.fas.fa-envelope
           i.error.error-icon.fas.fa-exclamation-circle
         .error.error-txt Name can&apos;t be blank
-      .field.surname
-        label Surname
-        .input-area
-          input(type='text' placeholder=' Surname')
-          i.icon.fas.fa-envelope
-          i.error.error-icon.fas.fa-exclamation-circle
-        .error.error-txt Surname can&apos;t be blank
       .field.email
         label Please enter your email address
         .input-area
@@ -97,11 +89,29 @@ html(lang='en')
           i.icon.fas.fa-lock
           i.error.error-icon.fas.fa-exclamation-circle
         .error.error-txt Password can&apos;t be blank
+      .field
+        label What type of therapy are you interested in?
+        select
+          option(value='Depression') Depression
+          option(value='Anxiety') Anxiety
+          option(value='Relationships') Relationships
+          option(value='Family') Family Conflicts
+          option(value='Grief and Loss') Grief and Loss
+      .field
+          label Please enter your date of birth
+          input(type='date' placeholder='YYYY-MM-DD' style='display: block; width: 100%;')
+      .field
+        label What leads you to therapy today?
+        textarea(placeholder='Briefly describe your reasons for seeking therapy' style='width: 100%; max-width: 100%;')
+      .field
+        label How would you prefer to communicate with your therapist?
+        select
+          option(value='phone-call') Phone Call
+          option(value='video-call') Video Call
+          option(value='text') Text
 
-      .pass-txt
-        a(href='#') Forgot password?
       .login-btn-container
-        input(type='submit' value='Sign In')
+        input(type='submit' value='Sign Up')
     .sign-txt
-      | Not yet a member? 
-      a(href='/sign-up') Sign up now
+      | Already a member? 
+      a(href='/signin.html') Login now
