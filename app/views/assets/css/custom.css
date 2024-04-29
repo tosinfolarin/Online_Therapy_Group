@@ -129,7 +129,7 @@ nav{
       position: fixed;
       width: 100%;
       height: 100vh;
-      background:url(assets/roman-kraft-0EVKn3-5JSU-unsplash.jpg);
+      background:url(assets/img/roman-kraft-0EVKn3-5JSU-unsplash.jpg);
       background-size: cover;
       background-position:center;
       top: 80px;
@@ -540,8 +540,3 @@ nav{
       margin: 0 auto 10px;
     }
   }
-  
-
-
-  
-  
