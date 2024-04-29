@@ -167,7 +167,7 @@ nav{
   .lister{
 
   
-    background: url('assets/therapybanner.jpg') center/cover;
+    background: url('/assets/img/therapybanner.jpg') center/cover;
     height: 550px; 
     display: flex;
     

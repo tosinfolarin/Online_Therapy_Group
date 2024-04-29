@@ -17,7 +17,7 @@ const db = require('./services/db');
 //This ensures that we can use the POST parameter
 app.use(express.urlencoded({ extended: true }));
 
-
+app.use('/assets', express.static("assets"));
 
 
 const TherapistController = require('./models/Therapistcontrol');
