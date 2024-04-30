@@ -1,107 +1,118 @@
-doctype html
+//- doctype html
 
-html(lang='en')
-  head
-    title Sign In Page
-    style.
+//- html(lang='en')
+//-   head
+//-     title Sign In Page
+//-     style.
       
-      header {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-        color: white;
-      }  
-      label {
-        font-weight: bold;
-        margin-bottom: 5px; /* Adds spacing below the label */
-        color: white;
-      }
-      input[type='text'],
-      input[type='password'],
-      textarea,
-      select,
-      input[type='number'] {
-        width: 100%; /* input fields and textarea take up full width */
-        padding: 10px; /* Add padding to the input fields */
-        margin-bottom: 10px; /* Adds spacing below the input fields */
-        border: 1px solid #ccc; /* Adds a border */
-        border-radius: 5px; /* curvs the ends of the border */
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-      }
-      .error-txt {
-        color: red; 
-        font-style: italic; 
-      }
-      input[type='submit'] {
-        width: 100%; /* Make the input area take up the full width of the container */
-        padding: 10px; /* Add padding to the button */
-        background-color: #4ba976; 
-        color: #fff; /* Set text color to white */
-        border: none; /* Remove border */
-        border-radius: 5px; /* Add some border radius */
-        cursor: pointer; /* Change cursor to pointer on hover */
-      }
-      .sign-txt {
-        text-align: center; 
-        margin-top: 20px; 
-      }
-      .wrapper {
-        width: 30%; /* Make the wrapper take up 30% of the page width */
-        margin: 0 auto; /* Centers the wrapper horizontally */
-        margin-top: 10vh; /* Centers the form on the screen */
-        margin-bottom: 10vh;
-        background-color: #1f5357;
-        padding: 30px;
-        border-radius: 8px;
+//-       header {
+//-         font-size: 24px;
+//-         font-weight: bold;
+//-         text-align: center;
+//-         margin-bottom: 20px;
+//-         color: white;
+//-       }  
+//-       label {
+//-         font-weight: bold;
+//-         margin-bottom: 5px; /* Adds spacing below the label */
+//-         color: white;
+//-       }
+//-       input[type='text'],
+//-       input[type='password'],
+//-       textarea,
+//-       select,
+//-       input[type='number'] {
+//-         width: 100%; /* input fields and textarea take up full width */
+//-         padding: 10px; /* Add padding to the input fields */
+//-         margin-bottom: 10px; /* Adds spacing below the input fields */
+//-         border: 1px solid #ccc; /* Adds a border */
+//-         border-radius: 5px; /* curvs the ends of the border */
+//-         box-sizing: border-box; /* Include padding and border in the element's total width and height */
+//-       }
+//-       .error-txt {
+//-         color: red; 
+//-         font-style: italic; 
+//-       }
+//-       input[type='submit'] {
+//-         width: 100%; /* Make the input area take up the full width of the container */
+//-         padding: 10px; /* Add padding to the button */
+//-         background-color: #4ba976; 
+//-         color: #fff; /* Set text color to white */
+//-         border: none; /* Remove border */
+//-         border-radius: 5px; /* Add some border radius */
+//-         cursor: pointer; /* Change cursor to pointer on hover */
+//-       }
+//-       .sign-txt {
+//-         text-align: center; 
+//-         margin-top: 20px; 
+//-       }
+//-       .wrapper {
+//-         width: 30%; /* Make the wrapper take up 30% of the page width */
+//-         margin: 0 auto; /* Centers the wrapper horizontally */
+//-         margin-top: 10vh; /* Centers the form on the screen */
+//-         margin-bottom: 10vh;
+//-         background-color: #1f5357;
+//-         padding: 30px;
+//-         border-radius: 8px;
         
-      }
-      .login-btn-container {
-        width: 50%; 
-        margin: 0 auto; /* Centers the container horizontally */
-      }
-      body {
-        background-color: #b5e3a3; /* background color of the whole page */
-      }
+//-       }
+//-       .login-btn-container {
+//-         width: 50%; 
+//-         margin: 0 auto; /* Centers the container horizontally */
+//-       }
+//-       body {
+//-         background-color: #b5e3a3; /* background color of the whole page */
+//-       }
 
-  body
+//-   body
     
-    .wrapper
-      form(action='#')
-      header Sign In 
-      .field.firstName
-        label First Name
-        .input-area
-          input(type='text' placeholder='First Name')
-          i.icon.fas.fa-envelope
-          i.error.error-icon.fas.fa-exclamation-circle
-        .error.error-txt Name can&apos;t be blank
-      .field.surname
-        label Surname
-        .input-area
-          input(type='text' placeholder=' Surname')
-          i.icon.fas.fa-envelope
-          i.error.error-icon.fas.fa-exclamation-circle
-        .error.error-txt Surname can&apos;t be blank
-      .field.email
-        label Please enter your email address
-        .input-area
-          input(type='text' placeholder='Email Address')
-          i.icon.fas.fa-envelope
-          i.error.error-icon.fas.fa-exclamation-circle
-        .error.error-txt Email can&apos;t be blank
-      .field.password
-        .input-area
-        label Please enter your password 
-          input(type='password' placeholder='Password')
-          i.icon.fas.fa-lock
-          i.error.error-icon.fas.fa-exclamation-circle
-        .error.error-txt Password can&apos;t be blank
+//-     .wrapper
+//-       form(action='#')
+//-       header Sign In 
+//-       .field.firstName
+//-         label First Name
+//-         .input-area
+//-           input(type='text' placeholder='First Name')
+//-           i.icon.fas.fa-envelope
+//-           i.error.error-icon.fas.fa-exclamation-circle
+//-         .error.error-txt Name can&apos;t be blank
+//-       .field.surname
+//-         label Surname
+//-         .input-area
+//-           input(type='text' placeholder=' Surname')
+//-           i.icon.fas.fa-envelope
+//-           i.error.error-icon.fas.fa-exclamation-circle
+//-         .error.error-txt Surname can&apos;t be blank
+//-       .field.email
+//-         label Please enter your email address
+//-         .input-area
+//-           input(type='text' placeholder='Email Address')
+//-           i.icon.fas.fa-envelope
+//-           i.error.error-icon.fas.fa-exclamation-circle
+//-         .error.error-txt Email can&apos;t be blank
+//-       .field.password
+//-         .input-area
+//-         label Please enter your password 
+//-           input(type='password' placeholder='Password')
+//-           i.icon.fas.fa-lock
+//-           i.error.error-icon.fas.fa-exclamation-circle
+//-         .error.error-txt Password can&apos;t be blank
 
-      .pass-txt
-        a(href='#') Forgot password?
-      .login-btn-container
-        input(type='submit' value='Sign In')
-    .sign-txt
-      | Not yet a member? 
-      a(href='/sign-up') Sign up now
+//-       .pass-txt
+//-         a(href='#') Forgot password?
+//-       .login-btn-container
+//-         input(type='submit' value='Sign In')
+//-     .sign-txt
+//-       | Not yet a member? 
+//-       a(href='/sign-up') Sign up now
+
+
+extends layout
+block content
+    h1 Login here
+    form(action='/authenticate' method='POST')
+        label(for='email') Enter your email: 
+        input(name='email') 
+        label(for='email') Enter your password: 
+        input(name='password' type = 'password')
+        input(type='submit' value='Submit')

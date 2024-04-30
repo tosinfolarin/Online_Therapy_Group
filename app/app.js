@@ -22,6 +22,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/assets', express.static("assets"));
 
 
+const { User } = require("./models/user");
+
+
+
+// Set the sessions
+var session = require('express-session');
+app.use(session({
+  secret: 'secretkeysdfjsflyoifasd',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
+
+
+
+
+
+
 const TherapistController = require('./models/Therapistcontrol');
 const therapistController = new TherapistController(db);
 
@@ -37,6 +56,28 @@ app.get('/singledoc/:Therapist_Reg_No', (req, res) => therapistController.getSin
  app.get("/", function(req, res) {
      res.render("index", {'title':'My index page', 'heading':'My heading'});
  });
+
+
+
+ //WELCOME BACK MESSAGE AFTER LOGIN
+
+
+//  // Create a route for root - /
+// app.get("/", function(req, res) {
+//   console.log(req.session);
+//   if (req.session.uid) {
+//   res.send('Welcome back, ' + req.session.uid + '!');
+// } else {
+//   res.send('Please login to view this page!');
+// }
+// res.end();
+// });
+
+
+
+
+
+
 
 
 
@@ -57,8 +98,8 @@ app.get("/signin.html", function(req, res) {
   });
 
 // When users click on the sign up button from the sign in page they are able to sign up
-  app.get("/sign-up", function(req, res) {
-    res.render("signup");
+  app.get("/signup", function(req, res) {
+    res.render("profile");
   });
 
 // When users click on the Profile page, their profile shows
@@ -114,13 +155,6 @@ app.get("/Therapists.html", function(req, res) {
 // app.get("/profilepage", function(req, res) {
 //     res.render('profile')
 // });
-
-
-
-
-
-
-
 
 
 // app.get("/online-therapy", function(req, res) {
@@ -233,6 +267,18 @@ app.get("/susan/:Therapist_Reg_No", function(req,res){
         res.render('sp', {results:results});
     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -431,6 +477,91 @@ app.get("/doctordetails/:Therapist_Reg_No", function(req,res){
        res.render('jd',{results:results} );
     });
 });
+
+
+
+// Register
+app.get('/signup', function (req, res) {
+  res.render('signup');
+});
+
+
+// If the email is matches an email in the database
+// a new password is set, if not then a new user is added
+
+app.post('/signup', async function (req, res) {
+  params = req.body;
+  var user = new User(params.email);
+  try {
+      uId = await user.getIdFromEmail();
+      if (uId) {
+          // If a valid, existing user is found, set the password and redirect to the users single-student page
+          await user.setUserPassword(params.password);
+          // console.log(req.session.id);
+          // res.send('Password set successfully');
+          // res.redirect('/profile.html/' + uId); // TRY TO INCORPORATE THIS
+          res.redirect('/profile.html/');
+      }
+      else {
+          // If no existing user is found, add a new one
+          newId = await user.addUser(params.email);
+          res.send('/signup.html');
+      }
+  } catch (err) {
+      console.error(`Error while adding password `, err.message);
+  }
+});
+
+
+
+
+
+
+// Login
+app.get('/signin', function (req, res) {
+  res.render('signin');
+});
+
+// Check submitted email and password pair
+app.post('/authenticate', async function (req, res) {
+  params = req.body;
+  var user = new User(params.email);
+  try {
+      uId = await user.getIdFromEmail();
+      if (uId) {
+          match = await user.authenticate(params.password);
+          if (match) {
+              req.session.uId = uId;
+              req.session.loggedIn = true;
+              console.log(req.session.id);
+              // res.redirect('/profile.html/' + uId);
+              res.redirect('/profile.html/');
+          }
+          else {
+              // TODO improve the user journey here
+              res.send('invalid password');
+          }
+      }
+      else {
+          res.send('invalid email');
+      }
+  } catch (err) {
+      console.error(`Error while comparing `, err.message);
+  }
+});
+
+
+
+
+
+// Logout
+app.get('/logout', function (req, res) {
+  req.session.destroy();
+  res.redirect('/signin');
+});
+
+
+
 
 
 
