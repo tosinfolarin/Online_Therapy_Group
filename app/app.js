@@ -99,7 +99,7 @@ app.get("/signin.html", function(req, res) {
 
 // When users click on the sign up button from the sign in page they are able to sign up
   app.get("/signup", function(req, res) {
-    res.render("profile");
+    res.render("signup");
   });
 
 // When users click on the Profile page, their profile shows
@@ -533,6 +533,7 @@ app.post('/authenticate', async function (req, res) {
           if (match) {
               req.session.uId = uId;
               req.session.loggedIn = true;
+              req.session.userName = user.name;
               console.log(req.session.id);
               // res.redirect('/profile.html/' + uId);
               res.redirect('/profile.html/');

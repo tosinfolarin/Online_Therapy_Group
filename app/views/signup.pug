@@ -118,11 +118,69 @@
 
 
 extends layout
+
 block content
-    h1 Register here
-    form(action='/signup' method='POST')
-        label(for='email') Enter your email: 
-        input(name='email') 
-        label(for='email') Enter your password: 
-        input(name='password' type = 'password')
-        input(type='submit' value='Submit')
+    style.
+        .register-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input.form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button.btn.btn-primary {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #1f5357;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button.btn.btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    .register-container
+        h1 Register
+        form(action='/signup', method='POST')
+            .form-group
+                label(for='email') Email
+                input.form-control(type='email', id='email', name='email', placeholder='Enter your email', required)
+            .form-group
+                label(for='password') Password
+                input.form-control(type='password', id='password', name='password', placeholder='Enter your password', required)
+            button.btn.btn-primary(type='submit') Register
+            p
+                | Already a member? 
+                a(href='/signin.html') Login now

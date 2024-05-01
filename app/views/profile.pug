@@ -4,16 +4,34 @@ head
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     style 
       include ./Assets/css/mycss.css
+      include ./assets/css/custom.css
     link(rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200')
     link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' integrity='sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==' crossorigin='anonymous' referrerpolicy='no-referrer')
     title profile
 body
+    nav
+        input#check(type='checkbox')
+        label.checkbtn(for='check')
+            i.fa.fa-bars(aria-hidden='true')
+        a.fgalogo(href='#')
+        label.logo TOF-ONLINETHERAPY
+        ul.menus
+            li
+                a.active(href='#') Home
+            li
+                a.active(href='Therapists.html') Therapists
+            li
+                a.active(href='profile.html') Profile
+            li
+                a(href='signin.html')
+                    span.signbtn  Login 
+    br
     .container
       .profile-header
         .profile-img
           img(src='assets/img/doctor 1.jpg' width='200' alt='Profile Image')
         .profile-nav-info
-          h3.user-name Full Name  
+          h3.user-name Welcome
         .profile-option
           .notification
             i.fa.fa-bell
