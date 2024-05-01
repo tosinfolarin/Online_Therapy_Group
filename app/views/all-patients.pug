@@ -1,0 +1,22 @@
+extends layout
+block content
+    .main-content 
+        h1 All Patients 
+        table(border=1)
+            tr  
+                th Patient ID
+                th Patient Name
+                th Date of Birth
+                th Phone Number
+                th Email
+            each item in data 
+                tr  
+                    td #{item.PatientID}
+                    td
+                        a(href='/all-patients/' + item.Patient_Name) #{item.Patient_Name}
+                    td
+                        a(href='/all-patients/' + item.Date_of_Birth) #{item.Date_of_Birth}
+                    td
+                        a(href='/all-patients/' + item.Phone_Number) #{item.Phone_Number}
+                    td
+                        a(href='/all-patients/' + item.Email) #{item.Email}

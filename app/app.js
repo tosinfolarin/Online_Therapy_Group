@@ -128,7 +128,60 @@ app.get("/Therapists.html", function(req, res) {
         output += '</table>';
         res.send(output);
     })
+
+   
+
 });
+
+
+app.get("/all-patients", function(req, res) {
+  var sql = 'SELECT PatientID, PtName AS Patient_Name, PtDOB AS Date_of_Birth, PtPhoneNo AS Phone_Number, PtEmail AS Email FROM Patients';
+  db.query(sql).then(results => {
+    console.log(results);
+    res.send(results);
+  });
+});
+
+   
+  app.get("/all-patients-formatted", function(req, res) {
+    var sql = 'SELECT PatientID, PtName AS Patient_Name, PtDOB AS Date_of_Birth, PtPhoneNo AS Phone_Number, PtEmail AS Email FROM Patients';
+    db.query(sql) .then(results => {
+      res.render('all-patients', {data: results});
+      })
+  });
+  
+
+
+
+// Single patient page.  Show the students name, course and modules
+app.get("/single-patient/:PatientID", async function (req, res) {
+  var patientID = req.params.PatientID;
+  console.log(patientID);
+
+  // Query to get the patient's information and their consultation details
+  var patientSql = "SELECT Patients.PtName AS Patient_Name, Consultations.ConsultationID, Consultations.C_Type AS Consultation_Type, \
+  Consultations.C_Date AS Consultation_Date, Consultations.C_Time AS Consultation_Time, Consultations.C_Duration AS Consultation_Duration, \
+  Therapist.TherapistName AS Therapist_Name FROM Patients \
+  JOIN Consultations ON Patients.PatientID = Consultations.PatientID \
+  JOIN Therapist ON Consultations.Therapist_Reg_No = Therapist.Therapist_Reg_No \
+  WHERE Patients.PatientID = ?;";
+
+  var patientResult = await db.query(patientSql, [patientID]);
+  console.log(patientResult);
+
+  // Get the consultations for this patient using the patientID
+  var modSql = "SELECT * FROM Consultations \
+  JOIN Patients ON Consultations.PatientID = Patients.PatientID \
+  WHERE Consultations.PatientID = ?";
+
+  var modResult = await db.query(modSql, [patientID]);
+  console.log(modResult);
+
+  // Send the result as JSON object
+  res.json({ patient: patientResult, consultations: modResult });
+});
+
+
 //   app.get("/Therapists.html", function(req, res) {
 //     res.render("/online-therapy");
 //   });
