@@ -21,8 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/assets', express.static("assets"));
 
-
 const { User } = require("./models/user");
+
+const { Patient } = require('./models/patients.js');
 
 
 
@@ -34,7 +35,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }));
-
 
 
 
@@ -58,9 +58,7 @@ app.get('/singledoc/:Therapist_Reg_No', (req, res) => therapistController.getSin
  });
 
 
-
  //WELCOME BACK MESSAGE AFTER LOGIN
-
 
 //  // Create a route for root - /
 // app.get("/", function(req, res) {
@@ -81,12 +79,10 @@ app.get('/singledoc/:Therapist_Reg_No', (req, res) => therapistController.getSin
 
 
 
-
 // When users click on the sign in button they are able to sign in
 app.get("/notes", function(req, res) {
   res.render("notes");
 });
-
 
 
 
@@ -106,7 +102,6 @@ app.get("/signin.html", function(req, res) {
   app.get("/profile.html", function(req, res) {
     res.render("profile");
   });
-
 
 // When users click on the therapists button, they see the list of therapists
 app.get("/Therapists.html", function(req, res) {
@@ -133,7 +128,6 @@ app.get("/Therapists.html", function(req, res) {
 
 });
 
-
 app.get("/all-patients", function(req, res) {
   var sql = 'SELECT PatientID, PtName AS Patient_Name, PtDOB AS Date_of_Birth, PtPhoneNo AS Phone_Number, PtEmail AS Email FROM Patients';
   db.query(sql).then(results => {
@@ -152,40 +146,60 @@ app.get("/all-patients", function(req, res) {
   
 
 
+// // Single patient page.  Show the students name, course and modules
+// app.get("/single-patient/:PatientID", async function (req, res) {
+//   var patientID = req.params.PatientID;
+//   console.log(patientID);
 
-// Single patient page.  Show the students name, course and modules
-app.get("/single-patient/:PatientID", async function (req, res) {
-  var patientID = req.params.PatientID;
-  console.log(patientID);
+//   // Query to get the patient's information and their consultation details
+//   var patientSql = "SELECT Patients.PtName AS Patient_Name, Consultations.ConsultationID, Consultations.C_Type AS Consultation_Type, \
+//   Consultations.C_Date AS Consultation_Date, Consultations.C_Time AS Consultation_Time, Consultations.C_Duration AS Consultation_Duration, \
+//   Therapist.TherapistName AS Therapist_Name FROM Patients \
+//   JOIN Consultations ON Patients.PatientID = Consultations.PatientID \
+//   JOIN Therapist ON Consultations.Therapist_Reg_No = Therapist.Therapist_Reg_No \
+//   WHERE Patients.PatientID = ?;";
 
-  // Query to get the patient's information and their consultation details
-  var patientSql = "SELECT Patients.PtName AS Patient_Name, Consultations.ConsultationID, Consultations.C_Type AS Consultation_Type, \
-  Consultations.C_Date AS Consultation_Date, Consultations.C_Time AS Consultation_Time, Consultations.C_Duration AS Consultation_Duration, \
-  Therapist.TherapistName AS Therapist_Name FROM Patients \
-  JOIN Consultations ON Patients.PatientID = Consultations.PatientID \
-  JOIN Therapist ON Consultations.Therapist_Reg_No = Therapist.Therapist_Reg_No \
-  WHERE Patients.PatientID = ?;";
+//   var patientResult = await db.query(patientSql, [patientID]);
+//   console.log(patientResult);
 
-  var patientResult = await db.query(patientSql, [patientID]);
-  console.log(patientResult);
+//   // Get the consultations for this patient using the patientID
+//   var modSql = "SELECT * FROM Consultations \
+//   JOIN Patients ON Consultations.PatientID = Patients.PatientID \
+//   WHERE Consultations.PatientID = ?";
 
-  // Get the consultations for this patient using the patientID
-  var modSql = "SELECT * FROM Consultations \
-  JOIN Patients ON Consultations.PatientID = Patients.PatientID \
-  WHERE Consultations.PatientID = ?";
+//   var modResult = await db.query(modSql, [patientID]);
+//   console.log(modResult);
 
-  var modResult = await db.query(modSql, [patientID]);
-  console.log(modResult);
+//   // Send the result as JSON object
+//   res.json({ patient: patientResult, consultations: modResult });
+// });
 
-  // Send the result as JSON object
-  res.json({ patient: patientResult, consultations: modResult });
+
+
+// app.get("/single-patient/:id", async function (req, res) {
+//   const patientID = req.params.id;
+//   // Create a patient class with the ID passed
+//   const patient = new Patient(patientID);
+//   // Retrieve all patient information
+//   const patientInfo = await patient.getPatientInfo();
+//   console.log(patient);
+//   res.json(patientInfo);
+// });
+
+
+
+app.get("/single-patient/:id", async function (req, res) {
+  const patientID = req.params.id;
+  // Create a patient class with the ID passed
+  const patient = new Patient(patientID);
+  // Retrieve all patient information
+  await patient.getPatientInfo();
+  console.log(patient);
+  res.render('patient', { patient: patient });
 });
 
 
-//   app.get("/Therapists.html", function(req, res) {
-//     res.render("/online-therapy");
-//   });
- 
+
 
   app.get("/therapists", function(req, res) {
     var sql = 'select * from Therapist';
@@ -198,17 +212,14 @@ app.get("/single-patient/:PatientID", async function (req, res) {
 
 
 
-
  app.get("/", function(req, res) {
   res.render("signin");
 });
-
 
 // // This is my profile page for the online therapy
 // app.get("/profilepage", function(req, res) {
 //     res.render('profile')
 // });
-
 
 // app.get("/online-therapy", function(req, res) {
 //     var sql = 'SELECT DISTINCT Therapist_Reg_No, TherapistName FROM Therapist';
@@ -234,7 +245,6 @@ app.get("/single-patient/:PatientID", async function (req, res) {
 
 
 
-
 //Retrieving individual information from Johnny Depp
 app.get("/find-out-more-johnny-depp", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Johnny Depp'";
@@ -250,7 +260,6 @@ app.get("/doctordetails/:Therapist_Reg_No", function(req,res){
        res.render('jd',{results:results} );
     });
 });
-
 
 
 //Retrieving individual information from Jane Carter
@@ -269,7 +278,6 @@ app.get("/jane-carter/:TherapistName", function(req,res){
     });
 });
 
-
 //Retrieving individual information from Thomas Appleby
 app.get("/find-out-more-thomas-appleby", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Thomas Appleby'";
@@ -285,7 +293,6 @@ app.get("/Thomas/:Therapist_Reg_No", function(req,res){
        res.render('TA',{results:results} );
     });
 });
-
 
     
 //Retrieving individual information from Phoebe Price
@@ -304,7 +311,6 @@ app.get("/phoebe/:Therapist_Reg_No", function(req,res){
     })
 })
 
-
 //Retrieving individual information from Susan Porter
 app.get("/find-out-more-susan-porter", function(req, res) {
     var sql = "SELECT * FROM Therapist WHERE TherapistName = 'Susan Porter'";
@@ -320,7 +326,6 @@ app.get("/susan/:Therapist_Reg_No", function(req,res){
         res.render('sp', {results:results});
     })
 })
-
 
 
 
@@ -354,16 +359,13 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
     var alldoc = req.params.Therapist_Reg_No;
     var alldocsql ="SELECT * from therapist  WHERE TherapistName = ?";
 
-
     
     
     db.query(alldocsql, [alldoc]).then(results =>{
        res.render('alldocs', {results:results})
 
-
     })
 }); */
-
 
 
 
@@ -402,28 +404,26 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 
 
-
-  class Patient {
-    constructor(patientID, patientName, patientDOB, patientPhoneNumber, patientEmailAddress) {
-      this.patientID = patientID;
-      this.patientName = patientName;
-      this.patientDOB = patientDOB;
-      this.patientPhoneNumber = patientPhoneNumber;
-      this.patientEmailAddress = patientEmailAddress;
-    }
+  // class Patient {
+  //   constructor(patientID, patientName, patientDOB, patientPhoneNumber, patientEmailAddress) {
+  //     this.patientID = patientID;
+  //     this.patientName = patientName;
+  //     this.patientDOB = patientDOB;
+  //     this.patientPhoneNumber = patientPhoneNumber;
+  //     this.patientEmailAddress = patientEmailAddress;
+  //   }
   
-    // Function to retrieve patient information
-    getPatientInfo() {
-      return {
-        patientID: this.patientID,
-        name: this.name,
-        patientDOB: this.patientDOB,
-        patientPhoneNumber: this.patientPhoneNumber,
-        patientEmailAddress: this.patientEmailAddress,
-      };
-    }
-  }
-
+  //   // Function to retrieve patient information
+  //   getPatientInfo() {
+  //     return {
+  //       patientID: this.patientID,
+  //       name: this.name,
+  //       patientDOB: this.patientDOB,
+  //       patientPhoneNumber: this.patientPhoneNumber,
+  //       patientEmailAddress: this.patientEmailAddress,
+  //     };
+  //   }
+  // }
 
 
 
@@ -445,7 +445,6 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
      res.send('form submitted');
 
 });
-
 
 
 
@@ -522,7 +521,6 @@ class CommunicationLog {
 
 
 
-
 app.get("/doctordetails/:Therapist_Reg_No", function(req,res){
     var docsId = req.params.Therapist_Reg_No;
     var docsql = "SELECT Therapist_Reg_No, TherapistName, Experience, Speciality, Approach, Availability FROM Therapist WHERE TherapistName = 'Johnny Depp'";
@@ -532,12 +530,10 @@ app.get("/doctordetails/:Therapist_Reg_No", function(req,res){
 });
 
 
-
 // Register
 app.get('/signup', function (req, res) {
   res.render('signup');
 });
-
 
 // If the email is matches an email in the database
 // a new password is set, if not then a new user is added
@@ -564,7 +560,6 @@ app.post('/signup', async function (req, res) {
       console.error(`Error while adding password `, err.message);
   }
 });
-
 
 
 
@@ -607,13 +602,11 @@ app.post('/authenticate', async function (req, res) {
 
 
 
-
 // Logout
 app.get('/logout', function (req, res) {
   req.session.destroy();
   res.redirect('/signin');
 });
-
 
 
 
@@ -640,4 +633,3 @@ app.get("/hello/:name", function(req, res) {
 app.listen(2000,function(){
     console.log(`Server running at http://127.0.0.1:2000/`);
 });
-
