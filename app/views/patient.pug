@@ -2,7 +2,14 @@ extends layout
 block content
     h1 #{patient.patientName}'s Diary
     p ID #{patient.patientID}
-    p email: #{patient.ptEmailAddress}
-    p date of birth:#{patient.patientDOB}
+    p email: #{patient.patientEmailAddress}
+    p date of birth: #{patient.patientDOB}
     p phone number: #{patient.patientPhoneNumber}
-    p Later on we will be able to display the programme and modules
+ 
+    h2 Add a note about this student
+    form(action='/add-note', method='POST')
+        input(type='hidden' name='id' value=patient.patientID)
+        textarea(name='note' rows=6 cols=50)
+        div 
+            input(type='submit' value='Submit')
+

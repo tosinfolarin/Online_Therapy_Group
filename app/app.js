@@ -401,33 +401,6 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 
 
-
-
-
-  // class Patient {
-  //   constructor(patientID, patientName, patientDOB, patientPhoneNumber, patientEmailAddress) {
-  //     this.patientID = patientID;
-  //     this.patientName = patientName;
-  //     this.patientDOB = patientDOB;
-  //     this.patientPhoneNumber = patientPhoneNumber;
-  //     this.patientEmailAddress = patientEmailAddress;
-  //   }
-  
-  //   // Function to retrieve patient information
-  //   getPatientInfo() {
-  //     return {
-  //       patientID: this.patientID,
-  //       name: this.name,
-  //       patientDOB: this.patientDOB,
-  //       patientPhoneNumber: this.patientPhoneNumber,
-  //       patientEmailAddress: this.patientEmailAddress,
-  //     };
-  //   }
-  // }
-
-
-
-
   // This Was added in conjunction with Lisas video 
 
   app.post('/add-note', async function (req, res) {
@@ -448,34 +421,6 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 
 
-
-
-
-
-
-
-
-
-  class Consultation {
-    constructor(consultationID, consultationDate, patient, therapist, notes) {
-      this.consultationID = consultationID;
-      this.consultationDate = consultationDate;
-      this.patient = patient; 
-      this.therapist = therapist;
-      this.notes = notes;
-    }
-  
-    // Function to retrieve consultation details
-    getConsultationDetails() {
-      return {
-        consultationID: this.consultationID,
-        consultationDate: this.consultationDate,
-        patient: this.patient.getPatientInfo(),
-        therapist: this.therapist.getTherapistInfo(),
-        notes: this.notes,
-      };
-    }
-  }
 
   class Payment {
     constructor(paymentID, paymentDate, paymentMethod, paymentTime, status) {
