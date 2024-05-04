@@ -2,9 +2,9 @@ extends layout
 block content
     h1 #{patient.patientName}'s Diary
     p ID #{patient.patientID}
-    p email: #{patient.patientEmailAddress}
-    p date of birth: #{patient.patientDOB}
-    p phone number: #{patient.patientPhoneNumber}
+    p Email: #{patient.patientEmailAddress}
+    p Data date of birth: #{patient.patientDOB}
+    p Phone number: #{patient.patientPhoneNumber}
  
     h2 Add some notes to your Journal
     form(action='/add-note', method='POST')
@@ -12,4 +12,6 @@ block content
         textarea(name='note' rows=6 cols=50)
         div 
             input(type='submit' value='Submit')
+    
 
+    p Journal Log: #{patient.note} 

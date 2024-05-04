@@ -18,6 +18,7 @@ class Patient {
             const patientPhoneNumber = await this.getPatientPhoneNumber();
             const patientEmailAddress = await this.getPatientEmailAddress();
             // const note = await this.addPatientNote();
+            await this.addPatientNote();
     
             const patientInfo = {
                 patientID: this.patientID,
@@ -25,6 +26,7 @@ class Patient {
                 patientDOB,
                 patientPhoneNumber,
                 patientEmailAddress,
+                note: this.note
         
             };
             return patientInfo;
@@ -52,11 +54,19 @@ class Patient {
             const sql = "SELECT PtDOB FROM Patients WHERE PatientID = ?";
             const results = await db.query(sql, [this.patientID]);
             if (results.length > 0) {
-                this.patientDOB = results[0].PtDOB;
+                // Parse the date string from the database
+                const dob = new Date(results[0].PtDOB);
+                // Extract day, month, and year
+                const day = dob.getDate().toString().padStart(2, '0');
+                const month = (dob.getMonth() + 1).toString().padStart(2, '0');
+                const year = dob.getFullYear();
+                // Construct the formatted date string
+                this.patientDOB = `${day}-${month}-${year}`;
             }
         }
         return this.patientDOB;
     }
+    
     
     async getPatientPhoneNumber() {
         if (!this.patientPhoneNumber) {
@@ -81,14 +91,6 @@ class Patient {
     }
 
 
-    //  async addPatientNote (note) {
-    //     var sql = "UPDATE Patients SET Notes = ? WHERE PatientID = ?"
-    //     const result = await db.query(sql, [note, this.id]);
-    //     // Ensure the note property in the model is up to date
-    //     this.note = note;
-    //     return result;
-    // }
-
     async addPatientNote (note) {
         // Check if note is provided
         if (note === undefined) {
@@ -97,7 +99,7 @@ class Patient {
         }
         var sql = "UPDATE Patients SET Notes = ? WHERE PatientID = ?";
         const result = await db.query(sql, [note, this.patientID]);
-        // Ensure the note property in the model is up to date
+
         this.note = note;
         return result;
     }

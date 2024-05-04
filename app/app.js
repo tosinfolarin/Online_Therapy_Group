@@ -178,14 +178,33 @@ app.get("/all-patients", function(req, res) {
 
 
 
+// app.get("/single-patient/:id", async function (req, res) {
+//   const patientID = req.params.id;
+//   // Create a patient class with the ID passed
+//   const patient = new Patient(patientID);
+//   // Retrieve all patient information
+//   await patient.getPatientInfo();
+//   console.log(patient);
+//   res.render('patient', { patient: patient });
+// });
+
 app.get("/single-patient/:id", async function (req, res) {
-  const patientID = req.params.id;
-  // Create a patient class with the ID passed
-  const patient = new Patient(patientID);
-  // Retrieve all patient information
-  await patient.getPatientInfo();
-  console.log(patient);
-  res.render('patient', { patient: patient });
+  try {
+    const patientID = req.params.id;
+    // Create a patient class with the ID passed
+    const patient = new Patient(patientID);
+    // Retrieve all patient information
+    await Promise.all([
+      patient.getPatientInfo(),
+      patient.addPatientNote() // Assuming you have a method to fetch patient notes
+    ]);
+    console.log(patient);
+    res.render('patient', { patient: patient });
+  } catch (error) {
+    console.error("Error fetching patient information:", error);
+    // Handle the error and send an appropriate response
+    res.status(500).send("Error fetching patient information");
+  }
 });
 
 
