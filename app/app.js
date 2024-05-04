@@ -176,16 +176,6 @@ app.get("/all-patients", function(req, res) {
 
 
 
-// app.get("/single-patient/:id", async function (req, res) {
-//   const patientID = req.params.id;
-//   // Create a patient class with the ID passed
-//   const patient = new Patient(patientID);
-//   // Retrieve all patient information
-//   const patientInfo = await patient.getPatientInfo();
-//   console.log(patient);
-//   res.json(patientInfo);
-// });
-
 
 
 app.get("/single-patient/:id", async function (req, res) {
@@ -198,6 +188,55 @@ app.get("/single-patient/:id", async function (req, res) {
   res.render('patient', { patient: patient });
 });
 
+
+
+app.post('/add-note', async function (req, res) {
+  const params = req.body;
+  const patientID = params.id; // Get patient ID from the request body
+  const note = params.note; // Get note from the request body
+
+  try {
+    const patient = new Patient(patientID); // Instantiate Patient object with patientID
+    await patient.addPatientNote(note); // Add note to patient
+    res.send('Note added successfully'); // Send success response
+  } catch (err) {
+    console.error(`Error while adding note: `, err.message);
+    res.status(500).send('Error while adding note'); // Send error response
+  }
+});
+
+
+
+
+//   app.post('/add-note', async function (req, res) {
+//     params = req.body;
+//     // Adding a try/catch block which will be useful later when we add to the database
+//     var PatientID = new Patient(params.id);
+//     try {
+//          await patient.addPatientNote(params.note);
+//          res.send('form submitted');
+//         }
+//      catch (err) {
+//          console.error(`Error while adding note `, err.message);
+//      }
+//      // Just a little output for now
+//      res.send('form submitted');
+
+// });
+
+
+// app.post('/add-note', function (req, res) {
+//   // Adding a try/catch block which will be useful later when we add to the database
+//   try {
+//       // Just a console.log for now to check we are receiving the form field values
+//       console.log(req.body);
+//    } catch (err) {
+//        console.error(`Error while adding note `, err.message);
+//    }
+//    // Just a little output for now
+//    res.send('form submitted');
+
+// });
 
 
 
@@ -370,99 +409,9 @@ app.get("/singledoc/:Therapist_Reg_No", function(req, res){
 
 
 
-//TClasses
-
-  
-  class Therapist {
-    constructor(therapistsName, therapistRegistrationNumber, therapistPhoneNumber, experience, speciality, approach, availability, notes) {
-        this.therapistsName = therapistsName; 
-        this.therapistPhoneNumber = therapistPhoneNumber; 
-        this.therapistRegistrationNumber = therapistRegistrationNumber;
-        this.experience = experience;
-        this.speciality = speciality;
-        this.approach = approach;
-        this.availability = availability;
-        this.notes = notes;
-    }
-
-    getTherapistInfo() {
-        return {
-            therapistRegistrationNumber: this.therapistRegistrationNumber,
-            therapistPhoneNumber: this.therapistPhoneNumber,
-            name: this.therapistsName, 
-            experience: this.experience,
-            speciality: this.speciality,
-            approach: this.approach,
-            availability: this.availability,
-            notes: this.notes,
-        };
-    }
-}
 
 
 
-  // This Was added in conjunction with Lisas video 
-
-  app.post('/add-note', async function (req, res) {
-    params = req.body;
-    // Adding a try/catch block which will be useful later when we add to the database
-    var student = new Patient(params.this.patientID);
-    try {
-         await patient.addPatientNote(params.note);
-         res.send('form submitted');
-        }
-     catch (err) {
-         console.error(`Error while adding note `, err.message);
-     }
-     // Just a little output for now
-     res.send('form submitted');
-
-});
-
-
-
-
-  class Payment {
-    constructor(paymentID, paymentDate, paymentMethod, paymentTime, status) {
-      this.paymentID = paymentID;
-      this.paymentDate = paymentDate;
-      this.paymentMethod = paymentMethod;
-      this.paymentTime = paymentTime;
-      this.status = status;
-    }
-  
-    // Function to retrieve payment details
-    getPaymentInfo() {
-      return {
-        paymentID: this.paymentID,
-        paymentDate: this.paymentDate,
-        paymentMethod: this.paymentMethod,
-        paymentTime: this.paymentTime,
-        status: this.status,
-      };
-    }
-}
-
-class CommunicationLog {
-    constructor(logID, typeOfCommunication, logDate, logTime, logContent) {
-      this.logID = logID;
-      this.typeOfCommunication = typeOfCommunication;
-      this.logDate = logDate;
-      this.logTime = logTime;
-      this.logContent = logContent;
-    }
-  
-    // Function to retrieve Journal details
-    getJournalDetails() {
-      return {
-        logID: this.logID,
-        typeOfCommunication: this.typeOfCommunication,
-        logDate: this.logDate,
-        logTime: this.logTime,
-        logContent: this.logContent,
-      };
-    }
-  }
 
 
 

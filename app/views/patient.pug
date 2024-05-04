@@ -6,7 +6,7 @@ block content
     p date of birth: #{patient.patientDOB}
     p phone number: #{patient.patientPhoneNumber}
  
-    h2 Add a note about this student
+    h2 Add some notes to your Journal
     form(action='/add-note', method='POST')
         input(type='hidden' name='id' value=patient.patientID)
         textarea(name='note' rows=6 cols=50)

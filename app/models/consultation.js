@@ -1,3 +1,6 @@
+// Get the functions in the db.js file to use
+const db = require('./../services/db');
+
 class Consultation {
     constructor(consultationID, consultationDate, patient, therapist, notes) {
       this.consultationID = consultationID;

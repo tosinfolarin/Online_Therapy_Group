@@ -12,8 +12,7 @@ class TherapistController {
         this.docs = docs;
     }
 
-    //Note
-    note;
+    
 
     // Route for /online-therapy
     async getAllTherapists(req, res) {
@@ -35,15 +34,6 @@ class TherapistController {
     }
 
 
-
-    // This has been added in conjunction with the tutorial from Lisa
-    async addPatientNote (note) {
-        var sql = "UPDATE Patients SET note = ? WHERE this.patientName = ?"
-        const result = await db.query(sql, [note, this.id]);
-        // Ensure the note property in the model is up to date
-        this.note = note;
-        return result;
-    }
 }
 
 module.exports = TherapistController;

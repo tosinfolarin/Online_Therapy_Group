@@ -8,6 +8,7 @@ class Patient {
         this.patientDOB = null;
         this.patientPhoneNumber = null;
         this.patientEmailAddress = null;
+        this.note = null;
     }
 
     async getPatientInfo() {
@@ -16,6 +17,7 @@ class Patient {
             const patientDOB = await this.getPatientDOB();
             const patientPhoneNumber = await this.getPatientPhoneNumber();
             const patientEmailAddress = await this.getPatientEmailAddress();
+            // const note = await this.addPatientNote();
     
             const patientInfo = {
                 patientID: this.patientID,
@@ -23,6 +25,7 @@ class Patient {
                 patientDOB,
                 patientPhoneNumber,
                 patientEmailAddress,
+        
             };
             return patientInfo;
         } catch (error) {
@@ -31,7 +34,8 @@ class Patient {
         }
     }
     
-    
+
+
     async getPatientName() {
         if (!this.patientName) {
             const sql = "SELECT PtName FROM Patients WHERE PatientID = ?";
@@ -75,6 +79,29 @@ class Patient {
         }
         return this.patientEmailAddress;
     }
+
+
+    //  async addPatientNote (note) {
+    //     var sql = "UPDATE Patients SET Notes = ? WHERE PatientID = ?"
+    //     const result = await db.query(sql, [note, this.id]);
+    //     // Ensure the note property in the model is up to date
+    //     this.note = note;
+    //     return result;
+    // }
+
+    async addPatientNote (note) {
+        // Check if note is provided
+        if (note === undefined) {
+            // If note is not provided, set it to null
+            note = null;
+        }
+        var sql = "UPDATE Patients SET Notes = ? WHERE PatientID = ?";
+        const result = await db.query(sql, [note, this.patientID]);
+        // Ensure the note property in the model is up to date
+        this.note = note;
+        return result;
+    }
+    
 }
 
 module.exports = {
