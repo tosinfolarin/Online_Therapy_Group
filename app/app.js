@@ -25,8 +25,6 @@ const { User } = require("./models/user");
 
 const { Patient } = require('./models/patients.js');
 
-
-
 // Set the sessions
 var session = require('express-session');
 app.use(session({

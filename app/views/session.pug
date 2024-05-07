@@ -1,0 +1,105 @@
+extends layout
+
+block content
+    style
+        include ./assets/css/custom.css
+    style.
+        .session-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .label1 {
+            display: block;
+            font-weight: bold;
+        }
+
+        input.form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button.btn.btn-primary {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #1f5357;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button.btn.btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    nav
+        input#check(type='checkbox')
+        label.checkbtn(for='check')
+            i.fa.fa-bars(aria-hidden='true')
+        a.fgalogo(href='#')
+        label.logo TOF-ONLINETHERAPY
+        ul.menus
+            li
+                a.active(href='/') Home
+            li
+                a.active(href='Therapists.html') Therapists
+            li
+                a.active(href='profile.html') Profile
+            li
+                a(href='signin.html')
+                    span.signbtn  Login
+    br
+    br
+    .session-container
+        h1 Book a Session
+        form(action='/book-session', method='POST')
+            .form-group
+                label.label1(for='Therapist_Reg_No') Therapist ID
+                input.form-control(type='text', id='Therapist_Reg_No', name='Therapist_Reg_No', placeholder='Enter Therapist_Reg_No', required)
+            .form-group
+                label.label1(for='firstName') First Name
+                input.form-control(type='text', id='firstName', name='firstName', placeholder='Enter your first name', required)
+            .form-group
+                label.label1(for='lastName') Last Name
+                input.form-control(type='text', id='lastName', name='lastName', placeholder='Enter your last name', required)
+            .form-group
+                label.label1(for='age') Age
+                input.form-control(type='number', id='age', name='age', placeholder='Enter your age', required)
+            .form-group
+                label.label1(for='email') Email
+                input.form-control(type='email', id='email', name='email', placeholder='Enter your email', required)
+            .form-group
+                label.label1(for='phoneNumber') Phone Number
+                input.form-control(type='text', id='phoneNumber', name='phoneNumber', placeholder='Enter your phone number')
+            .form-group
+                label.label1(for='purposeOfSession') Purpose of Session
+                input.form-control(type='text', id='purposeOfSession', name='purposeOfSession', placeholder='Enter purpose of session', required)
+            .form-group
+                label.label1(for='preferredTypeOfSession') Preferred Type of Session
+                input.form-control(type='text', id='preferredTypeOfSession', name='preferredTypeOfSession', placeholder='Enter preferred type of session', required)
+            .form-group
+                label.label1(for='preferredDateTime') Preferred Date and Time
+                input.form-control(type='datetime-local', id='preferredDateTime', name='preferredDateTime', required)
+            button.btn.btn-primary(type='submit') Book Session
