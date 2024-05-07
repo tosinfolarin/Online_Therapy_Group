@@ -104,6 +104,20 @@ INSERT INTO `Patients` (`PatientID`, `PtName`, `PtDOB`, `PtPhoneNo`, `PtEmail`, 
 -- --------------------------------------------------------
 
 --
+
+CREATE TABLE `Booked_Session` (
+  `Session_ID` int NOT NULL,
+  `Therapist_Reg_No` int NOT NULL,
+  `First_Name` varchar(255) NOT NULL,
+  `Last_Name` varchar(255) NOT NULL,
+  `Age` int NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Phone_Number` int NOT NULL,
+  `Purpose_of_Session` varchar(255) NOT NULL,
+  `Preferred_Type_of_Session` varchar(255) NOT NULL,
+  `Preferred_Time_and_Date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Table structure for table `Payment`
 --
 
@@ -229,3 +243,26 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Booked_Session`
+--
+ALTER TABLE `Booked_Session`
+  ADD PRIMARY KEY (`Session_ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Booked_Session`
+--
+ALTER TABLE `Booked_Session`
+  MODIFY `Session_ID` int NOT NULL AUTO_INCREMENT;
+COMMIT;
