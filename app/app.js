@@ -34,6 +34,32 @@ app.use(session({
   cookie: { secure: false }
 }));
 
+const { Session } = require('./models/session.js');
+
+app.get("/book-session", function(req, res) {
+  res.render("session");
+});
+app.post("/book-session", async function(req, res) {
+  try {
+      
+      const { Therapist_Reg_No, firstName, lastName, age, email, phoneNumber, purposeOfSession, preferredTypeOfSession, preferredDateTime } = req.body;
+
+      
+      const bookingResult = await Session.bookSession(Therapist_Reg_No, firstName, lastName, age, email, phoneNumber, purposeOfSession, preferredTypeOfSession, preferredDateTime);
+
+      if (bookingResult) {
+          
+          res.status(200).send("Booking successful!");
+      } else {
+          
+          res.status(500).send("Error occurred while booking a session. Please try again later.");
+      }
+  } catch (error) {
+    
+      console.error("Error booking session:", error);
+      res.status(500).send("Error occurred while booking a session. Please try again later.");
+  }
+});
 
 
 
