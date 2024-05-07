@@ -38,7 +38,6 @@ app.use(session({
 
 
 
-
 const TherapistController = require('./models/Therapistcontrol');
 const therapistController = new TherapistController(db);
 
