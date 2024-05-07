@@ -118,6 +118,14 @@ CREATE TABLE `Booked_Session` (
   `Preferred_Time_and_Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+INSERT INTO Booked_Session (Therapist_Reg_No, First_Name, Last_Name, Age, Email, Phone_Number, Purpose_of_Session, Preferred_Type_of_Session, Preferred_Time_and_Date) 
+VALUES
+(1, 'Aaron', 'Archer', 74, 'aaronarcher@sql.com', 079511111, 'Marriage counselling', 'Phone call', '2024-05-07 10:00:00'),
+(2, 'Ben', 'Booth', 29, 'b.booth@sql.com', 079522222, 'Depression counselling', 'Video call', '2024-05-08 14:00:00'),
+(3, 'Charlie', 'Charles', 49, 'charliec@sql.com', 079533333, 'Stress counseling', 'video call', '2024-05-09 16:30:00'),
+(4, 'Demi', 'Darnel', 52, 'eeva@sql.com', 079544444, 'Marriage counselling', 'Text messaging', '2024-05-10 11:00:00');
+
+
 -- Table structure for table `Payment`
 --
 
